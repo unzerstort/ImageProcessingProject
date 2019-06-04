@@ -1,9 +1,6 @@
 #ifndef UTIL_HEADER
 #define UTIL_HEADER
 
-#include<stdio.h>
-#include<stdlib.h>
-
 #define uchar unsigned char
 #define uint unsigned int
 
@@ -16,9 +13,13 @@ typedef struct
 
 typedef struct
 {
+	char *buffer;
 	uint height;
 	uint width;
+	uint maxRGB;
 	Pixel **pixels;
 } Image;
+
+void printMenu();
 
 #endif
