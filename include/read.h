@@ -3,6 +3,6 @@
 
 #include"util.h"
 
-Image *readPPM(char *filepath);
+Image readPPM(char *filepath);
 
 #endif
