@@ -16,10 +16,11 @@ typedef struct
 	char *buffer;
 	uint height;
 	uint width;
-	uint maxRGB;
+	uchar maxRGB;
 	Pixel **pixels;
 } Image;
 
 void printMenu();
+Image *newImage(uint height, uint width, uchar maxRGB);
 
 #endif
