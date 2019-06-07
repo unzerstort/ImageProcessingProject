@@ -4,6 +4,7 @@
 
 void printMenu()
 {
+//Printing the menu with the following options.
     printf("     ---------------------------------------------------------------------\n");
     printf("    |  _     _  _______  ___      _______  _______  __   __  _______  __  |\n");
     printf("    | | | _ | ||       ||   |    |     __||       ||  |_|  ||       ||  | |\n");
@@ -31,6 +32,7 @@ void printMenu()
     printf("0 - Exit\n");
 }
 
+//Using enum to list the options in order.
 typedef enum Options
 {
 	exit,
@@ -47,12 +49,20 @@ typedef enum Options
 
 void menuOptions()
 {
-	int aux = 1;
+	int aux = 1;//Auxiliar used to decide when the program will do the recursion.
 	Options option;
     scanf("%d", &option);
 
+//Aplying the switch with enumeration.
    	switch(option)
 	{
+		case exit:
+			{
+			printf("Exiting the program...\n");
+			aux = 0;
+			break;
+			}
+
 		case thr:
 			{
 			//thresholding function
@@ -107,18 +117,12 @@ void menuOptions()
 			break;
 			}
 
-		case exit:
-			{
-			printf("Exiting the program...\n");
-			aux = 0;
-			}
-
 		default :
 			{
-			printf("Invalid term.");
+			printf("Invalid term.\n");
 			}
 		}
-   		 		
+//Recursiveness when the auxiliar has no change.		
 		if(aux == 1)
 		{
 			menuOptions();
