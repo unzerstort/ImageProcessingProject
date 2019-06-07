@@ -49,11 +49,12 @@ typedef enum Options
 
 void menuOptions()
 {
-	int aux = 1;//Auxiliar used to decide when the program will do the recursion.
+//Auxiliar used to decide when the program will do the recursion.
+	int aux = 1;
 	Options option;
     scanf("%d", &option);
 
-//Aplying the switch with enumeration.
+//Applying the switch with enumeration.
    	switch(option)
 	{
 		case exit:
@@ -66,54 +67,63 @@ void menuOptions()
 		case thr:
 			{
 			//thresholding function
+			//thresholding();
 			break; 
 			}
 
 		case grscl:
 			{
 			//grey scale function
+			//greyScale();
 			break;
 			}
 			
 		case blu:
 			{
 			//blurring function
+			//blurring();
 			break;
 			}
 
 		case sha:
 			{
 			//sharpening fucntion
+			//sharpening();
 			break;
 			}
 
 		case rot:
 			{
 			//rotation function
+			//rotation();
 			break;
 			}
 
 		case amp:
 			{
 			//zoom out function
+			//zoomOut();
 			break;
 			}
 
 		case red:
 			{
 			//zoom in fucntion
+			//zoomIn();
 			break;
 			}
 
 		case ex1:
 			{
-			// extra1 function
+			// extra1 function (probably complementary colors)
+			// invertColor();	
 			break;
 			}
 
 		case ex2:
 			{
-			//extra2 function
+			//extra2 function (probably invert image)
+			//invertImage();
 			break;
 			}
 
