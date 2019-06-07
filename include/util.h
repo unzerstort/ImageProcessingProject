@@ -4,23 +4,21 @@
 #define uchar unsigned char
 #define uint unsigned int
 
-typedef struct
+typedef struct Pixel
 {
 	uchar red;
 	uchar green;
 	uchar blue;
 } Pixel;
 
-typedef struct
+typedef struct Image
 {
-	char *buffer;
 	uint height;
 	uint width;
-	uchar maxRGB;
+	uint maxRGB;
 	Pixel **pixels;
 } Image;
 
-void printMenu();
 Image *newImage(uint height, uint width, uchar maxRGB);
 
 #endif

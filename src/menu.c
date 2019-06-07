@@ -1,9 +1,9 @@
 #include <stdio.h>
-#include "read.h"
+#include "../include/read.h"
+#include "menu.h"
 
-enum options{exit, thr, grscl, blu, sha, rot, amp, red, ex1, ex2};
-
-void PrintMenu(){
+void printMenu()
+{
     printf("     ---------------------------------------------------------------------\n");
     printf("    |  _     _  _______  ___      _______  _______  __   __  _______  __  |\n");
     printf("    | | | _ | ||       ||   |    |     __||       ||  |_|  ||       ||  | |\n");
@@ -15,7 +15,7 @@ void PrintMenu(){
     printf("    |                                                                     |\n");
     printf("    | Image Processing Program                                            |\n");
     printf("    | Program developed by: Lucas Emanoell & Sandra Bastos.               |\n");
-    print("     |                                                                     |\n");
+    printf("     |                                                                     |\n");
     printf("     ---------------------------------------------------------------------\n");
     printf("\n");
     printf("Choose the options you want by turn:\n");
@@ -29,69 +29,98 @@ void PrintMenu(){
     printf("8 - EXTRA 2\n");
     printf("0 - Exit\n");
 }
-void  MenuOptions(){
-	int aux = 1;
-    	scanf("%d", &option);
 
-   		switch(options){
-			case thr:
-				{
-				//thresholding function
-				break; 
-				}
-			case grscl:
-				{
-				//grey scale function
-				break;
-				}
-			case blu:
-				{
-				//blurring function
-				break;
-				}
-			case sha:
-				{
-				//sharpening fucntion
-				break;
-				}
-			case rot:
-				{
-				//rotation function
-				break;
-				}
-			case amp:
-				{
-				//zoom out function
-				break;
-				}
-			case red:
-				{
-				//zoom in fucntion
-				break;
-				}
-			case ex1:
-				{
-				// extra1 function
-				break;
-				}
-			case ex2:
-				{
-				//extra2 function
-				break;
-				}
-			case exit:
-				{
-				printf("Exiting the program....\n");
-				aux = 0;
-   				exit(0);
-				}
-			default :
-				{
-				printf("Invalid term.");
-				}
+typedef enum Options
+{
+	exit,
+	thr,
+	grscl,
+	blu,
+	sha,
+	rot,
+	amp,
+	red,
+	ex1,
+	ex2
+} Options;
+
+void menuOptions(Options option)
+{
+	int aux = 1;
+
+    scanf("%d", &option);
+
+   	switch(option)
+	{
+		case thr:
+			{
+			//thresholding function
+			break; 
 			}
-   		 }
-		if(aux == 1){
-			MenuOptions();
+
+		case grscl:
+			{
+			//grey scale function
+			break;
+			}
+			
+		case blu:
+			{
+			//blurring function
+			break;
+			}
+
+		case sha:
+			{
+			//sharpening fucntion
+			break;
+			}
+
+		case rot:
+			{
+			//rotation function
+			break;
+			}
+
+		case amp:
+			{
+			//zoom out function
+			break;
+			}
+
+		case red:
+			{
+			//zoom in fucntion
+			break;
+			}
+
+		case ex1:
+			{
+			// extra1 function
+			break;
+			}
+
+		case ex2:
+			{
+			//extra2 function
+			break;
+			}
+
+		case exit:
+			{
+			printf("Exiting the program...\n");
+			aux = 0;
+   			exit(0);
+			}
+
+		default :
+			{
+			printf("Invalid term.");
+			}
+		}
+   		 		
+		if(aux == 1)
+		{
+			menuOptions();
 		}
 }

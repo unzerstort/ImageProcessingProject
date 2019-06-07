@@ -1,7 +1,7 @@
 #ifndef READ_HEADER
 #define READ_HEADER
 
-#include"util.h"
+#include "util.h"
 
 Image readPPM(char *filepath);
 

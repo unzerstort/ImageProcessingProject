@@ -1,16 +1,15 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include"read.h"
+#include "../include/read.h"
 
 int main()
 {
-	char *filepath; 
 	Image originalImg;
 
-	filepath = (char *) calloc(256, sizeof(char));
-	originalImg = readPPM(filepath);
+	//originalImg = readPPM(filepath);
 
-	//printMenu();
+	printMenu();
+	menuOptions();
 
 	return 0;
 }

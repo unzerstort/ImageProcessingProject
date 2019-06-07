@@ -8,7 +8,7 @@ Image readPPM(char *filename)
 	
 	FILE *image;
 	// change to filename l8r
-	image = fopen("../res/got.ppm", "r");	
+	image = fopen("../res/got.ppm", "r");
 
 	if (image == NULL)
 	{
@@ -22,12 +22,12 @@ Image readPPM(char *filename)
 	
 	Image img;
 	long numbytes;
-	char type[10];
+	char format[10];
 
-	fgets(type, 10, image);
+	fgets(format, 10, image);
 
 	// reading first line to check the image format (P3 or not)
-	if (type[0] != 'P' || type[1] != '3')
+	if (format[0] != 'P' || format[1] != '3')
 	{
 		printf("Wrong image format (it should be 'P3')!\n");
 		fclose(image);
@@ -56,8 +56,6 @@ Image readPPM(char *filename)
 	}
 
 	//create the new image with same width, height and maxRGB
-	//
-
 
 	// check whats going wrong here 
 	img.pixels = (Pixel**) calloc(img.height, sizeof(Pixel*));
@@ -72,7 +70,7 @@ Image readPPM(char *filename)
 			++loadedPix;
 			
 			//uncomment the next line if you want to see the actual pixels
-			// printf("rgb(%hhu, %hhu, %hhu)\n", img.pixels[i][j].red, img.pixels[i][j].green, img.pixels[i][j].blue);
+			//printf("rgb(%hhu, %hhu, %hhu)\n", img.pixels[i][j].red, img.pixels[i][j].green, img.pixels[i][j].blue);
 		}
 	}
 
