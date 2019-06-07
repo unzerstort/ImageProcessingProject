@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "../include/read.h"
-#include "menu.h"
+#include "../include/menu.h"
 
 void printMenu()
 {
@@ -15,18 +15,19 @@ void printMenu()
     printf("    |                                                                     |\n");
     printf("    | Image Processing Program                                            |\n");
     printf("    | Program developed by: Lucas Emanoell & Sandra Bastos.               |\n");
-    printf("     |                                                                     |\n");
+    printf("    |                                                                     |\n");
     printf("     ---------------------------------------------------------------------\n");
     printf("\n");
     printf("Choose the options you want by turn:\n");
     printf("1 - Read PPM\n");
-    printf("2 - Grey Scale\n");
-    printf("3 - Blurring\n");
-    printf("4 - Sharpening\n");
-    printf("5 - Rotationing\n");
-    printf("6 - Zoom in/out\n");
-    printf("7 - EXTRA 1\n");
-    printf("8 - EXTRA 2\n");
+    printf("2 - Thresholding");
+    printf("3 - Grey Scale\n");
+    printf("4 - Blurring\n");
+    printf("5 - Sharpening\n");
+    printf("6 - Rotationing\n");
+    printf("7 - Zoom in/out\n");
+    printf("8 - EXTRA 1\n");
+    printf("9 - EXTRA 2\n");
     printf("0 - Exit\n");
 }
 
@@ -44,10 +45,10 @@ typedef enum Options
 	ex2
 } Options;
 
-void menuOptions(Options option)
+void menuOptions()
 {
 	int aux = 1;
-
+	Options option;
     scanf("%d", &option);
 
    	switch(option)
@@ -110,7 +111,6 @@ void menuOptions(Options option)
 			{
 			printf("Exiting the program...\n");
 			aux = 0;
-   			exit(0);
 			}
 
 		default :

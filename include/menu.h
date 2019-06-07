@@ -4,6 +4,6 @@
 #include "read.h"
 
 void printMenu();
-void menuOptions(Options option);
+void menuOptions();
 
 #endif
