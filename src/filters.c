@@ -6,15 +6,19 @@ Image *grayscale(Image *newImg)
 	int i, j;
 	uint gray;
 
-	for (i = 0; i < img->height; i++)
+	for (i = 0; i < newImg->height; i++)
 	{
-		for (j = 0; j < img->width; j++)
+		for (j = 0; j < newImg->width; j++)
 		{
-			gray = ((img->pixels[i][j].red)*0.3) + ((img->pixels[i][j].green)*0.59) + ((img->pixels[i][j].blue)*0.11);
+			gray = ((newImg->pixels[i][j].red)*0.3) + ((newImg->pixels[i][j].green)*0.59) + ((newImg->pixels[i][j].blue)*0.11);
 
-			img->pixels[i][j].red = gray;
-			img->pixels[i][j].green = gray;
-			img->pixels[i][j].blue = gray;
+			newImg->pixels[i][j].red = gray;
+			newImg->pixels[i][j].green = gray;
+			newImg->pixels[i][j].blue = gray;
 		}
 	}
+
+	printf("Grayscale successfully applied! :)\n");
+
+	return newImg;
 }
