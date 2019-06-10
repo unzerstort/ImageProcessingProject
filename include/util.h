@@ -19,4 +19,6 @@ typedef struct Image
 	Pixel **pixels;
 } Image;
 
+Image copyImg(Image *newImg);
+
 #endif
