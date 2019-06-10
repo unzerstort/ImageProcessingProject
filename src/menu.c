@@ -20,22 +20,24 @@ void printMenu()
     printf("     ---------------------------------------------------------------------\n");
     printf("\n");
     printf("Choose the options you want by turn:\n");
-    printf("1 - Read PPM\n");
-    printf("2 - Thresholding");
-    printf("3 - Grey Scale\n");
-    printf("4 - Blurring\n");
-    printf("5 - Sharpening\n");
-    printf("6 - Rotationing\n");
-    printf("7 - Zoom in/out\n");
-    printf("8 - EXTRA 1\n");
-    printf("9 - EXTRA 2\n");
-    printf("0 - Exit\n");
+    printf("1  - Read PPM\n");
+    printf("2  - Thresholding\n");
+    printf("3  - Grey Scale\n");
+    printf("4  - Blurring\n");
+    printf("5  - Sharpening\n");
+    printf("6  - Rotationing\n");
+    printf("7  - Zoom in\n");
+    printf("8  - Zoom out\n");
+    printf("9  - EXTRA 1\n");
+    printf("10 - EXTRA 2\n");
+    printf("0  - Exit\n");
 }
 
 //Using enum to list the options in order.
 typedef enum Options
 {
 	exit,
+	rdPPM,
 	thr,
 	grscl,
 	blu,
@@ -62,6 +64,13 @@ void menuOptions()
 			printf("Exiting the program...\n");
 			aux = 0;
 			break;
+			}
+		
+		case rdPPM:
+			{
+			char *filepath;
+			Image originalImg;
+			originalImg = readPPM(filepath);
 			}
 
 		case thr:
