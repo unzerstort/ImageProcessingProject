@@ -57,7 +57,7 @@ Image readPPM(char *filename)
 
 	//create the new image with same width, height and maxRGB
 
-	// check whats going wrong here 
+	// pixel mapping 
 	img.pixels = (Pixel**) calloc(img.height, sizeof(Pixel*));
 	
 	int loadedPix = 0;

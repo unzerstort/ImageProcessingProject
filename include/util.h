@@ -19,6 +19,4 @@ typedef struct Image
 	Pixel **pixels;
 } Image;
 
-Image *newImage(uint height, uint width, uchar maxRGB);
-
 #endif
