@@ -5,7 +5,8 @@
 void writePPM(Image *img, char *filename)
 {
 	// change this into filename/path l8r
-	FILE *outImage = fopen("../res/got.ppm", "w");
+	FILE *outImage;
+	outImage = fopen("../res/got.ppm", "w");
 
 	//writing the image's header	
 	fprintf(outImage, "P3\n");
