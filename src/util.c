@@ -5,24 +5,26 @@
 #include "../include/read.h"
 #include "../include/util.h"
 
+// just in case you are wondering what exactly does this function do: withit we copy the matrix of the original image into the one we'll actually manipulate, so that the original one doesn't go through the changes.
+
 Image copyImg(Image *originalImg)
 {
 	int i, j;
 	Image newImg;
 
-	newImg.width = originalImg.width;
-	newImg.height = originalImg.height;
-	newImg.maxRGB = originalImg.maxRGB;
+	newImg.width = originalImg->width;
+	newImg.height = originalImg->height;
+	newImg.maxRGB = originalImg->maxRGB;
 
 	newImg.pixels = (Pixel**) calloc(newImg.height, sizeof(Pixel*));
 
-	for (i = 0; i < originalImg.height; i++)
+	for (i = 0; i < originalImg->height; i++)
 	{
-		newImg.pixels = (Pixel*) calloc(newImg.width, sizeof(Pixel));
+		newImg.pixels[i] = (Pixel*) calloc(newImg.width, sizeof(Pixel));
 
-		for (j = 0; j < originalImg.width; j++)
+		for (j = 0; j < originalImg->width; j++)
 		{
-			newImg.pixels[i][j] = originalImg.pixels[i][j];
+			newImg.pixels[i][j] = originalImg->pixels[i][j];
 		}
 	}
 
