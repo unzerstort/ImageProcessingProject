@@ -1,6 +1,8 @@
 #include "../include/filters.h"
 #include "../include/util.h"
 
+// in case you are wondering how does this first one work, here we use themost common formula used in image processors (like Photoshop, GIMP, etc.),that basically adjusts each RGB color to the actual perception of the human eye. nice, huh? 
+
 Image *grayscale(Image *newImg)
 {
 	int i, j;
