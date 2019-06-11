@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include"../include/read.h"
+#include "../include/read.h"
 
 Image readPPM(char *filename)
 {
@@ -21,7 +21,6 @@ Image readPPM(char *filename)
 	}
 	
 	Image img;
-	long numbytes;
 	char format[10];
 
 	fgets(format, 10, image);
@@ -54,8 +53,10 @@ Image readPPM(char *filename)
 	{
 		fprintf(stderr, "Invalid maximum RBG value.\n");
 	}
-
-	//create the new image with same width, height and maxRGB
+	else
+	{
+		printf("The maximum RGB value is: %u.\n", img.maxRGB);
+	}
 
 	// pixel mapping 
 	img.pixels = (Pixel**) calloc(img.height, sizeof(Pixel*));
