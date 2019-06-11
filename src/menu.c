@@ -4,36 +4,37 @@
 
 void printMenu()
 {
-//Printing the menu with the following options.
+	// printing the starting menu with the available options
+
     printf("     ---------------------------------------------------------------------\n");
     printf("    |  _     _  _______  ___      _______  _______  __   __  _______  __  |\n");
-    printf("    | | | _ | ||       ||   |    |     __||       ||  |_|  ||       ||  | |\n");
-    printf("    | | || || ||    ___||   |    |    |   |   _   ||       ||    ___||  | |\n");
-    printf("    | |       ||   |___ |   |    |    |   |  | |  ||       ||   |___ |  | |\n");
-    printf("    | |       ||    ___||   |___ |    |   |  |_|  ||       ||    ___||__| |\n");
-    printf("    | |   _   ||   |___ |       ||    |__ |       || ||_|| ||   |___  __  |\n");
+    printf("    | | |   | ||       ||  |     |   ____||  ___  ||  |_|  ||       ||  | |\n");
+    printf("    | | | _ | ||    ___||  |     |  |     | |   | ||       ||    ___||  | |\n");
+    printf("    | | || || ||   |___ |  |     |  |     | |   | || |   | ||   |___ |  | |\n");
+    printf("    | | |   | ||    ___||  |     |  |     | |   | || ||_|| ||    ___||__| |\n");
+    printf("    | |   _   ||   |___ |  |____ |  |____ | |___| || |   | ||   |___  __  |\n");
     printf("    | |__| |__||_______||_______||_______||_______||_|   |_||_______||__| |\n");
     printf("    |                                                                     |\n");
     printf("    | Image Processing Program                                            |\n");
-    printf("    | Program developed by: Lucas Emanoell & Sandra Bastos.               |\n");
+    printf("    | \tdeveloped by: Lucas Emanoell & Sandra Bastos.                     |\n");
     printf("    |                                                                     |\n");
     printf("     ---------------------------------------------------------------------\n");
     printf("\n");
-    printf("Choose the options you want by turn:\n");
-    printf("1  - Read PPM\n");
-    printf("2  - Thresholding\n");
-    printf("3  - Grey Scale\n");
-    printf("4  - Blurring\n");
-    printf("5  - Sharpening\n");
-    printf("6  - Rotationing\n");
-    printf("7  - Zoom in\n");
-    printf("8  - Zoom out\n");
-    printf("9  - EXTRA 1\n");
-    printf("10 - EXTRA 2\n");
-    printf("0  - Exit\n");
+    printf("\tChoose the options you want by turn:\n");
+    printf("\t1. Read PPM\n");
+    printf("\t2. Thresholding\n");
+    printf("\t3. Grey Scale\n");
+    printf("\t4. Blurring\n");
+    printf("\t5. Sharpening\n");
+    printf("\t6. Rotate\n");
+    printf("\t7. Zoom in\n");
+    printf("\t8. Zoom out\n");
+    printf("\t9. EXTRA 1\n");
+    printf("\t10. EXTRA 2\n");
+    printf("\t0. Exit\n");
 }
 
-//Using enum to list the options in order.
+	// using typedef enum to define the number order of options (for instance, exit = 0, rPPM = 1 and so on)
 typedef enum Options
 {
 	exit,
@@ -51,12 +52,13 @@ typedef enum Options
 
 void menuOptions()
 {
-//Auxiliar used to decide when the program will do the recursion.
+	// this auxiliar is used to decide when the program will call menuOptions again
+
 	int aux = 1;
 	Options option;
     scanf("%d", &option);
 
-//Applying the switch with enumeration.
+	// this switch case will receive the numbers entered by the user and judge them according to the enum type Options 
    	switch(option)
 	{
 		case exit:
@@ -82,8 +84,8 @@ void menuOptions()
 
 		case grscl:
 			{
-			//grey scale function
-			//greyScale();
+			//grayscale function)
+			//grayscale();
 			break;
 			}
 			
@@ -131,17 +133,18 @@ void menuOptions()
 
 		case ex2:
 			{
-			//extra2 function (probably invert image)
+			//extra2 function (probably image inverter)
 			//invertImage();
 			break;
 			}
 
 		default :
 			{
-			printf("Invalid term.\n");
+			printf("Invalid option.\n");
 			}
 		}
-//Recursiveness when the auxiliar has no change.		
+
+		//Recursiveness when the auxiliar has no change.		
 		if(aux == 1)
 		{
 			menuOptions();
