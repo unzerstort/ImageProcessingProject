@@ -1,7 +1,6 @@
 #include <stdio.h>
-#include "../include/read.h"
-#include "../include/menu.h"
 
+#include "menu.h"
 
 void printMenu()
 {
@@ -35,20 +34,20 @@ void printMenu()
     printf("\t0. Exit\n");
 }
 
-	// using typedef enum to define the number order of options (for instance, exit = 0, rPPM = 1 and so on)
+	// using typedef enum to define the number order of options (for instance, EXIT = 0, RDPPM = 1 and so on)
 typedef enum Options
 {
-	exit,
-	rdPPM,
-	thr,
-	grscl,
-	blu,
-	sha,
-	rot,
-	amp,
-	red,
-	ex1,
-	ex2
+	EXIT,
+	READPPM,
+	THRESHOLD,
+	GRAYSCALE,
+	BLURRING,
+	SHARPENING,
+	ROTATE,
+	ZOOMIN,
+	ZOOMOUT,
+	EX1,
+	EX2
 } Options;
 
 void menuOptions()
@@ -59,81 +58,84 @@ void menuOptions()
 	Options option;
     scanf("%d", &option);
 
+	char *filepath;
+	Image image;
+
 	// this switch case will receive the numbers entered by the user and judge them according to the enum type Options 
    	switch(option)
 	{
-		case exit:
+		case EXIT:
 			{
 			printf("Exiting the program...\n");
 			aux = 0;
 			break;
 			}
 		
-		case rdPPM:
+		case READPPM:
 			{
-			char *filepath;
-			Image image;
 			image = readPPM(filepath);
+			break;
 			}
 
-		case thr:
+		case THRESHOLD:
 			{
 			//thresholding function
 			//thresholding();
 			break; 
 			}
 
-		case grscl:
+		case GRAYSCALE:
 			{
-			//grayscale function)
-			//Image image;
-			//image = grayscale(image);
+			//grayscale function
+			image = readPPM(filepath);
+			image = grayscale(image);
+			writePPM(filepath, image);
 			break;
 			}
 			
-		case blu:
+		case BLURRING:
 			{
 			//blurring function
 			//blurring();
 			break;
 			}
 
-		case sha:
+		case SHARPENING:
 			{
 			//sharpening fucntion
 			//sharpening();
 			break;
 			}
 
-		case rot:
+		case ROTATE:
 			{
 			//rotation function
 			//rotation();
 			break;
 			}
 
-		case amp:
+		case ZOOMOUT:
 			{
 			//zoom out function
 			//zoomOut();
 			break;
 			}
 
-		case red:
+		case ZOOMIN:
 			{
-			//zoom in fucntion
+			//zoom in function
 			//zoomIn();
 			break;
 			}
 
-		case ex1:
+		case EX1:
 			{
 			// extra1 function (probably complementary colors)
 			// invertColor();	
 			break;
 			}
 
-		case ex2:
+		case EX2:
 			{
 			//extra2 function (probably image inverter)
 			//invertImage();

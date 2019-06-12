@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include "../include/read.h"
+
+#include "read.h"
 
 Image readPPM(char *filepath)
 {

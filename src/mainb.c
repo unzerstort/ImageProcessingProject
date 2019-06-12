@@ -1,9 +1,10 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include "../include/read.h"
-#include "../include/menu.h"
-#include "../include/write.h"
-#include "../include/util.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include "read.h"
+#include "menu.h"
+#include "write.h"
+#include "util.h"
+#include "filters.h"
 
 int main()
 {

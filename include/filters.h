@@ -1,7 +1,10 @@
-#include<stdio.h>
-#include<stdlib.h>
+#ifndef FILTERS_H
+#define FILTERS_H
 
-#include "../include/util.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include "util.h"
 
-Image *grayscale(Image *img);
+Image grayscale(Image img);
 
+#endif

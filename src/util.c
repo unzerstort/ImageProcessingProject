@@ -1,9 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
-#include "../include/read.h"
-#include "../include/util.h"
+#include "util.h"
 
 // just in case you are wondering what exactly this function is doing: it copies the matrix of the original image into the one we'll actually manipulate, so that the original one doesn't go through the changes.
 

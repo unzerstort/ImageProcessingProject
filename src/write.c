@@ -1,26 +1,31 @@
 #include<stdio.h>
-#include "../include/util.h"
-#include "../include/write.h"
+#include<stdlib.h>
 
-void writePPM(char *filepath, Image *img)
+#include "write.h"
+
+void writePPM(char *filepath, Image img)
 {
-	// change this into filename/path l8r
+	filepath = calloc(100, sizeof(char));
+
+	printf("Insert the file's destination, as well as its new name in the end.\n For instance: /home/user/ImageProcessing-ITP/newfile.ppm.\n");
+	scanf("%s", filepath);
+
 	FILE *outImage;
 	outImage = fopen(filepath, "w");
 
 	//writing the image's header	
 	fprintf(outImage, "P3\n");
-	fprintf(outImage, "%u %u\n", img->width, img->height);
-	fprintf(outImage, "%u\n", img->maxRGB);
+	fprintf(outImage, "%u %u\n", img.width, img.height);
+	fprintf(outImage, "%u\n", img.maxRGB);
 
 	//writing all rgb values 
 	int i, j;
 
-	for (i = 0; i < img->height; i++)
+	for (i = 0; i < img.height; i++)
 	{
-		for (j = 0; j < img->width; j++)
+		for (j = 0; j < img.width; j++)
 		{
-			fprintf(outImage, "%i\n%i\n%i\n", img->pixels[i][j].red, img->pixels[i][j].green, img->pixels[i][j].blue);
+			fprintf(outImage, "%i\n%i\n%i\n", img.pixels[i][j].red, img.pixels[i][j].green, img.pixels[i][j].blue);
 		}
 	}
 
