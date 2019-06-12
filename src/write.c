@@ -2,11 +2,11 @@
 #include "../include/util.h"
 #include "../include/write.h"
 
-void writePPM(Image *img, char *filename)
+void writePPM(char *filepath, Image *img)
 {
 	// change this into filename/path l8r
 	FILE *outImage;
-	outImage = fopen("../res/got.ppm", "w");
+	outImage = fopen(filepath, "w");
 
 	//writing the image's header	
 	fprintf(outImage, "P3\n");
@@ -25,4 +25,6 @@ void writePPM(Image *img, char *filename)
 	}
 
 	fclose(outImage);
+
+	return;
 }

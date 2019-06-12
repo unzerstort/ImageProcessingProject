@@ -2,14 +2,18 @@
 #include<stdlib.h>
 #include "../include/read.h"
 
-Image readPPM(char *filename)
+Image readPPM(char *filepath)
 {
+	filepath = calloc(50, sizeof(char));
+
+	printf("Insert the path of the PPM file you wish to process: ");
+	scanf("%s", filepath);
+
+	FILE *image;
+	image = fopen(filepath, "r");
+
 	printf("Reading image file...\n");
 	
-	FILE *image;
-	// change to filename l8r
-	image = fopen("../res/got.ppm", "r");
-
 	if (image == NULL)
 	{
 		printf("File doesn't exist!\n");

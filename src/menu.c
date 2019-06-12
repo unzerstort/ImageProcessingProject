@@ -2,6 +2,7 @@
 #include "../include/read.h"
 #include "../include/menu.h"
 
+
 void printMenu()
 {
 	// printing the starting menu with the available options
@@ -71,8 +72,8 @@ void menuOptions()
 		case rdPPM:
 			{
 			char *filepath;
-			Image originalImg;
-			originalImg = readPPM(filepath);
+			Image image;
+			image = readPPM(filepath);
 			}
 
 		case thr:
@@ -85,7 +86,8 @@ void menuOptions()
 		case grscl:
 			{
 			//grayscale function)
-			//grayscale();
+			//Image image;
+			//image = grayscale(image);
 			break;
 			}
 			
