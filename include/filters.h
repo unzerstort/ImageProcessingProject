@@ -3,5 +3,5 @@
 
 #include "../include/util.h"
 
-Image *greyscale(Image *img);
+Image *grayscale(Image *img);
 
