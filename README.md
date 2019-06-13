@@ -11,5 +11,5 @@ Image Processing Project developed in C language, in its simplest version, throu
 
 ## Authors
 
-* **Lucas Emanoell** - [htmlucas](https://github.com/htmlucas/)
+* **Lucas Emanoell** - [htmluke](https://github.com/htmluke)
 * **Sandra Bastos** - [unzerstort](https://github.com/unzerstort/)
