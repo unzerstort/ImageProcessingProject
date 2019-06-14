@@ -1,12 +1,22 @@
 #ifndef UTIL_HEADER
 #define UTIL_HEADER
 
-// we're using unsigned variables just because we won't use their negative values :p
+/*
+we're using unsigned char because its range is [0, 255], which is the exact interval of values the RGB color system can have :)
+concerning the unsigned int, we're using it just to avoid the negative numbers, nothing too complex
+*/
 
 #define uchar unsigned char
-#define usint unsigned int
+#define unsint unsigned int
 
-// here we define the structs we'll be using inside each function, as well as the utilitary minor functions!
+/* ______________________________________
+ *|										 |
+ *|   here we define the structs we'll	 |
+ *|	  be using inside each function, as	 |
+ *|	  well as the signatures from the	 |
+ *|	  utilitary minor functions!		 |
+ *|______________________________________|
+*/
 
 typedef struct Pixel
 {
@@ -17,9 +27,9 @@ typedef struct Pixel
 
 typedef struct Image
 {
-	usint height;
-	usint width;
-	usint maxRGB;
+	unsint height;
+	unsint width;
+	unsint maxRGB;
 	Pixel **pixels;
 } Image;
 
