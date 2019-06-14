@@ -1,5 +1,13 @@
 #include "filters.h"
 
+/* _________________________________
+ *|                                 |
+ *|	   here we'll implement all		|
+ *|    the filters we use through	|
+ *|    the project :)				|
+ *|_________________________________|
+*/
+
 // in case you are wondering how does this first one work, here we use themost common formula used in image processors (like Photoshop, GIMP, etc.),that basically adjusts each RGB color to the actual perception of the human eye. nice, huh? 
 
 Image grayscale(Image newImg)
@@ -22,4 +30,32 @@ Image grayscale(Image newImg)
 	printf("Grayscale successfully applied! :)\n");
 
 	return newImg;
+}
+
+Image threshold(Image img)
+{
+	int i, j;
+
+	for (i = 0; i < img.height; i++)
+	{
+		for (j = 0; j < img.width; j++)
+		{
+			if (img.pixels[i][j].red > 128)
+			{
+				img.pixels[i][j].red = img.maxRGB;	
+				img.pixels[i][j].green = img.maxRGB;
+				img.pixels[i][j].blue = img.maxRGB;
+			}
+			else
+			{		
+				img.pixels[i][j].red = 0;	
+				img.pixels[i][j].green = 0;
+				img.pixels[i][j].blue = 0;
+			}
+		}
+	}
+
+	printf("Threshold successfully applied! :) \n");
+
+	return img;
 }

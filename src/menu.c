@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 #include "menu.h"
 
 void printMenu()
@@ -34,123 +32,95 @@ void printMenu()
     printf("\t0. Exit\n");
 }
 
-	// using typedef enum to define the number order of options (for instance, EXIT = 0, RDPPM = 1 and so on)
+// using typedef enum to define the number order of options (for instance, EXIT = 0, READDPPM = 1 and so on)
+
 typedef enum Options
 {
 	EXIT,
 	READPPM,
+	WRITEPPM,
 	THRESHOLD,
 	GRAYSCALE,
 	BLURRING,
 	SHARPENING,
 	ROTATE,
-	ZOOMIN,
-	ZOOMOUT,
+	ZOOM,
 	EX1,
 	EX2
 } Options;
 
+// this guy here will receive the user's entered number and will judge whether the choice is valid or not according to the typedef enum above
+
 void menuOptions()
 {
-	// this auxiliar is used to decide when the program will call menuOptions again
-
-	int aux = 1;
+	
+	bool onMenu = true;
 	Options option;
     scanf("%d", &option);
 
 	char *filepath;
 	Image image;
 
-	// this switch case will receive the numbers entered by the user and judge them according to the enum type Options 
-   	switch(option)
+	while(true)
 	{
-		case EXIT:
-			{
-			printf("Exiting the program...\n");
-			aux = 0;
-			break;
-			}
-		
-		case READPPM:
-			{
-			image = readPPM(filepath);
-			break;
-			}
-
-		case THRESHOLD:
-			{
-			//thresholding function
-			//thresholding();
-			break; 
-			}
-
-		case GRAYSCALE:
-			{
-			//grayscale function
-			image = readPPM(filepath);
-			image = grayscale(image);
-			writePPM(filepath, image);
-			break;
-			}
-			
-		case BLURRING:
-			{
-			//blurring function
-			//blurring();
-			break;
-			}
-
-		case SHARPENING:
-			{
-			//sharpening fucntion
-			//sharpening();
-			break;
-			}
-
-		case ROTATE:
-			{
-			//rotation function
-			//rotation();
-			break;
-			}
-
-		case ZOOMOUT:
-			{
-			//zoom out function
-			//zoomOut();
-			break;
-			}
-
-		case ZOOMIN:
-			{
-			//zoom in function
-			//zoomIn();
-			break;
-			}
-
-		case EX1:
-			{
-			// extra1 function (probably complementary colors)
-			// invertColor();	
-			break;
-			}
-
-		case EX2:
-			{
-			//extra2 function (probably image inverter)
-			//invertImage();
-			break;
-			}
-
-		default :
-			{
-			printf("Invalid option.\n");
-			}
-		}
-
-		//Recursiveness when the auxiliar has no change.		
-		if(aux == 1)
+		switch(option)
 		{
-			menuOptions();
+			case EXIT:
+				onMenu = false;
+				printf("Exiting the program...\n");
+				break;
+				
+			case READPPM:
+				image = readPPM(filepath);
+				break;	
+
+			case WRITEPPM:
+				writePPM(filepath, image);
+				break;
+
+			case THRESHOLD:
+				//thresholding function
+				image = threshold(image);
+				break; 
+
+			case GRAYSCALE:
+				//grayscale function
+				image = grayscale(image);
+				break;
+				
+			case BLURRING:
+				//blurring function
+				//blurring();
+				break;
+
+			case SHARPENING:
+				//sharpening function
+				//sharpening();
+				break;
+
+			case ROTATE:
+				//rotation function
+				//rotation();
+				break;
+				
+			case ZOOM:
+				//zoom out function
+				//zoomOut();
+				//zoomIn();
+				break;
+
+			case EX1:
+				// extra1 function (probably complementary colors)
+				// invertColor();	
+				break;
+
+			case EX2:
+				//extra2 function (probably image inverter)
+				//invertImage();
+				break;
+				
+			default:
+				printf("Invalid option, try again.\n");
 		}
+	}
 }
