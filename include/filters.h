@@ -6,5 +6,6 @@
 #include "util.h"
 
 Image grayscale(Image img);
+Image threshold(Image img);
 
 #endif
