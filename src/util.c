@@ -2,11 +2,22 @@
 #include <stdlib.h>
 
 #include "util.h"
+    
+/*  _____________________________________
+ * |                                     |
+ * |	here we'll be implementing the	 |
+ * |	minor functions of the project	 |
+ * |									 |
+ * | 	by minor functions I mean they   |
+ * |	are the ones that'll help in     |
+ * |	other functions :D				 |
+ * |_____________________________________|
+ */
 
 // just in case you are wondering what exactly this function is doing: it copies the matrix of the original image into the one we'll actually manipulate, so that the original one doesn't go through the changes.
 
 Image copyImg(Image *originalImg)
-{
+{	
 	int i, j;
 	Image newImg;
 
@@ -29,3 +40,5 @@ Image copyImg(Image *originalImg)
 	return newImg;
 
 }
+
+

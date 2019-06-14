@@ -5,7 +5,7 @@
 
 Image readPPM(char *filepath)
 {
-	filepath = calloc(50, sizeof(char));
+	filepath = calloc(100, sizeof(char));
 
 	printf("Insert the path of the PPM file you wish to process: ");
 	scanf("%s", filepath);
