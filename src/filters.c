@@ -2,9 +2,9 @@
 
 /* _________________________________
  *|                                 |
- *|	   here we'll implement all		|
- *|    the filters we use through	|
- *|    the project :)				|
+ *|	   here we'll implement all |
+ *|    the filters we use through   |
+ *|    the project :)		    |
  *|_________________________________|
 */
 
@@ -59,3 +59,33 @@ Image threshold(Image img)
 
 	return img;
 }
+Image imgPixel(Image *img, int x, int y){
+	return &(img->pixels[y * img->width + x]);
+}
+Image rotation(Image img)
+{
+	printf("Choose the type of rotation:\n");
+	printf("1 - Rotation 90 degrees to the right\n");
+	//printf("2 - Rotation 90 degrees to the left\n");
+	//printf("3 - Rotation 180 degrees\n");
+
+	int pixelX, pixelY, option;
+
+	scanf("%d", &option);
+
+	if(option == 1){
+		for(pixelY = 0; pixelY < img->height; pixelY++){
+			for(pixelX = 0; pixelX < img->width; pixelX++){
+				Pixel *original = imgPixel(img, pixelX, pixelY);
+				Pixel *rotation = imgPixel(img, img->height - pixelY - 1, pixelX);
+				rotation->r = original->r;
+				rotation->g = original->g;
+				rotation->b = original->b;
+			}
+		}
+	}
+	
+	printf("Rotation successfully applied! :) \n");
+
+	return img
+}	
