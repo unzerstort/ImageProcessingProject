@@ -9,13 +9,13 @@ concerning the unsigned int, we're using it just to avoid the negative numbers, 
 #define uchar unsigned char
 #define unsint unsigned int
 
-/* ______________________________________
- *|										 |
- *|   here we define the structs we'll	 |
- *|	  be using inside each function, as	 |
- *|	  well as the signatures from the	 |
- *|	  utilitary minor functions!		 |
- *|______________________________________|
+/* ________________________________________
+ *|					   |
+ *|   here we define the structs we'll	   |
+ *|	  be using inside each function, as|
+ *|	  well as the signatures from the  |
+ *|	  utilitary minor functions!	   |
+ *|________________________________________|
 */
 
 typedef struct Pixel
