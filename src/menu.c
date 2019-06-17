@@ -36,7 +36,7 @@ typedef enum Options
 {
 	EXIT,
 	GRAYSCALE,
-	THRESHOLD,
+	THRESHOLDING,
 	BLURRING,
 	SHARPENING,
 	ROTATE,
@@ -71,10 +71,10 @@ void menuOptions()
 				writePPM(filepath, image);
 				break;
 
-			case THRESHOLD:
+			case THRESHOLDING:
 				//thresholding function
 				image = readPPM(filepath);
-				image = threshold(image);
+				image = thresholding(image);
 				writePPM(filepath, image);
 				break; 
 	
