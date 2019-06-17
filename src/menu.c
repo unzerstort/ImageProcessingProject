@@ -19,16 +19,14 @@ void printMenu()
     printf("     ---------------------------------------------------------------------\n");
     printf("\n");
     printf("\tChoose the options you want by turn:\n");
-    printf("\t1. Read PPM\n");
+    printf("\t1. Gray scale\n");
     printf("\t2. Thresholding\n");
-    printf("\t3. Grey Scale\n");
-    printf("\t4. Blurring\n");
-    printf("\t5. Sharpening\n");
-    printf("\t6. Rotate\n");
-    printf("\t7. Zoom in\n");
-    printf("\t8. Zoom out\n");
-    printf("\t9. EXTRA 1\n");
-    printf("\t10. EXTRA 2\n");
+    printf("\t3. Blurring\n");
+    printf("\t4. Sharpening\n");
+    printf("\t5. Rotate\n");
+    printf("\t6. Zoom\n");
+    printf("\t7. EXTRA 1\n");
+    printf("\t9. EXTRA 2\n");
     printf("\t0. Exit\n");
 }
 
@@ -37,10 +35,8 @@ void printMenu()
 typedef enum Options
 {
 	EXIT,
-	READPPM,
-	WRITEPPM,
-	THRESHOLD,
 	GRAYSCALE,
+	THRESHOLD,
 	BLURRING,
 	SHARPENING,
 	ROTATE,
@@ -53,45 +49,41 @@ typedef enum Options
 
 void menuOptions()
 {
-	
-	bool onMenu = true;
+	int aux = 1;
 	Options option;
     scanf("%d", &option);
 
 	char *filepath;
 	Image image;
 
-	while(true)
-	{
+
 		switch(option)
 		{
 			case EXIT:
-				onMenu = false;
+				aux = 0;
 				printf("Exiting the program...\n");
 				break;
-				
-			case READPPM:
+					
+			case GRAYSCALE:
+				//grayscale function
 				image = readPPM(filepath);
-				break;	
-
-			case WRITEPPM:
+				image = grayscale(image);
 				writePPM(filepath, image);
 				break;
 
 			case THRESHOLD:
 				//thresholding function
+				image = readPPM(filepath);
 				image = threshold(image);
+				writePPM(filepath, image);
 				break; 
-
-			case GRAYSCALE:
-				//grayscale function
-				image = grayscale(image);
-				break;
-				
+	
 			case BLURRING:
 				//blurring function
-				//blurring();
-				break;
+			/*	image = readPPM(filepath);
+				image = blurring(image);
+				writePPM(filepath, image);
+			*/	break;
 
 			case SHARPENING:
 				//sharpening function
@@ -122,5 +114,7 @@ void menuOptions()
 			default:
 				printf("Invalid option, try again.\n");
 		}
-	}
+			
+		if (aux == 1)
+			menuOptions();
 }
