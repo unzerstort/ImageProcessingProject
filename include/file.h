@@ -4,5 +4,6 @@
 #include "util.h"
 
 Image readPPM(char *filepath);
+void writePPM(char *filepath, Image img);
 
 #endif
