@@ -2,9 +2,9 @@
 
 /* _________________________________
  *|                                 |
- *|	   here we'll implement all |
+ *|    here we'll implement all     |
  *|    the filters we use through   |
- *|    the project :)		    |
+ *|    the project :)               |
  *|_________________________________|
 */
 
@@ -13,7 +13,7 @@
 Image grayscale(Image newImg)
 {
 	int i, j;
-	uint gray;
+	unsint gray;
 
 	for (i = 0; i < newImg.height; i++)
 	{
@@ -32,15 +32,16 @@ Image grayscale(Image newImg)
 	return newImg;
 }
 
-Image threshold(Image img)
+Image thresholding(Image img)
 {
 	int i, j;
+	uchar threshold = img.maxRGB/2;
 
 	for (i = 0; i < img.height; i++)
 	{
 		for (j = 0; j < img.width; j++)
 		{
-			if (img.pixels[i][j].red > 128)
+			if (img.pixels[i][j].red > threshold || img.pixels[i][j].blue > threshold || img.pixels[i][j].green > threshold)
 			{
 				img.pixels[i][j].red = img.maxRGB;	
 				img.pixels[i][j].green = img.maxRGB;
