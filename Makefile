@@ -20,11 +20,8 @@ objects/filters.o: src/filters.c
 objects/util.o: src/util.c
 	gcc src/util.c -Iinclude -c -o objects/util.o
 
-objects/read.o: src/read.c
-	gcc src/read.c -Iinclude -c -o objects/read.o
+objects/file.o: src/file.c
+	gcc src/file.c -Iinclude -c -o objects/file.o
 
-objects/write.o: src/write.c
-	gcc src/write.c -Iinclude -c -o objects/write.o
-
-exe: src/main.c objects/menu.o objects/filters.o objects/util.o objects/read.o objects/write.o
-	gcc src/main.c objects/menu.o objects/filters.o objects/util.o objects/read.o objects/write.o -Iinclude -o exe
+exe: src/main.c objects/menu.o objects/filters.o objects/util.o objects/file.o
+	gcc src/main.c objects/menu.o objects/filters.o objects/util.o objects/file.o -Iinclude -o exe
