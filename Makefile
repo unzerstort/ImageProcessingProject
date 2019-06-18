@@ -23,5 +23,8 @@ objects/util.o: src/util.c
 objects/file.o: src/file.c
 	gcc src/file.c -Iinclude -c -o objects/file.o
 
-exe: src/main.c objects/menu.o objects/filters.o objects/util.o objects/file.o
-	gcc src/main.c objects/menu.o objects/filters.o objects/util.o objects/file.o -Iinclude -o exe
+objects/transform.o: src/transform.c
+	gcc src/transform.c -Iinclude -c -o objects/transform.o
+
+exe: src/main.c objects/menu.o objects/filters.o objects/util.o objects/file.o objects/transform.o
+	gcc src/main.c objects/menu.o objects/filters.o objects/util.o objects/file.o objects/transform.o -Iinclude -o exe
