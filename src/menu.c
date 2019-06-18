@@ -45,7 +45,10 @@ typedef enum Options
 	EX2
 } Options;
 
-// this guy here will receive the user's entered number and will judge whether the choice is valid or not according to the typedef enum above
+/* this guy here will receive the user's entered number and 
+ * will judge whether the choice is valid or not according 
+ * to the typedef enum above
+ */
 
 void menuOptions()
 {
@@ -91,8 +94,10 @@ void menuOptions()
 				break;
 
 			case ROTATE:
-				//rotation function
-				//rotation();
+				// rotate function
+				image = readPPM(filepath);
+				image = rotate90DegreesRight(image);
+				writePPM(filepath, image);
 				break;
 				
 			case ZOOM:

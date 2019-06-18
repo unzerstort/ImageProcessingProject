@@ -2,9 +2,9 @@
 #define MENU_HEADER
 
 #include <stdbool.h>
-#include "read.h"
-#include "write.h"
+#include "file.h"
 #include "filters.h"
+#include "transform.h"
 
 void printMenu();
 void menuOptions();
