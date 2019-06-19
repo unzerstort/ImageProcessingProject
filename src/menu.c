@@ -52,13 +52,13 @@ typedef enum Options
 
 void menuOptions()
 {
-	int aux = 1;
+	int aux = 1, op;
 	Options option;
     scanf("%d", &option);
 
 	char *filepath;
 	Image image;
-
+	
 
 		switch(option)
 		{
@@ -96,14 +96,32 @@ void menuOptions()
 			case ROTATE:
 				// rotate function
 				image = readPPM(filepath);
-				image = rotate90DegreesRight(image);
+				printf("Choose one option:\n");
+				printf("1 - Rotation 90 degrees left\n");
+				printf("2 - Rotation 90 degrees right\n");
+				printf("3 - Rotation 180 degrees\n");
+				scanf("%d",&op);
+				if(op == 1)
+				{
+					image = rotate90DegreesLeft(image);
+				}
+				else if(op == 2)
+				{
+					image = rotate90DegreesRight(image);
+				}
+				else
+				{
+					image = rotate90DegreesLeft(image);
+					image = rotate90DegreesLeft(image);
+				}
 				writePPM(filepath, image);
 				break;
 				
 			case ZOOM:
 				//zoom out function
-				//zoomOut();
-				//zoomIn();
+				/*image = readPPM(filepath);
+				image = zoomOut(image);
+				writePPM(filepath, image);*/
 				break;
 
 			case EX1:
