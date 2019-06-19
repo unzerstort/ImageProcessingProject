@@ -126,7 +126,7 @@ void menuOptions()
 				scanf("%d",&op);
 				if(op == 1)
 				{
-					//image = zoomIn(image);
+					image = zoomIn(image);
 				}
 				else
 				{
