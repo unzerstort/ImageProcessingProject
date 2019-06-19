@@ -14,6 +14,7 @@
 #include "util.h"
 
 Image rotate90DegreesRight(Image);
-
+Image rotate90DegreesLeft(Image);
+Image zoomOut(Image);
 
 #endif
