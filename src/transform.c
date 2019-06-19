@@ -59,7 +59,7 @@ Image rotate90DegreesRight(Image img)
 	return rotated;
 }
 
-/*Image zoomOut(Image img)
+Image zoomOut(Image img)
 {
 	int i, j;
 	Image zoom;
@@ -76,40 +76,49 @@ Image rotate90DegreesRight(Image img)
 		
 		for(i = 0; i < zoom.height; i++)
 		{
+			int aux;
+			if(i%2 == 0)
+			{
+				aux = i/2;
+			}
+			else
+			{
+				aux = (i - 1)/2;
+			}
 			for(j = 0; j < zoom.width; j++)
 			{
 				if(j%2 ==0)
 				{	
-					if(i%2 == 0)
-					{
-					zoom.pixels[i][j].red = zoom.pixels[i][j/2].red;
-					zoom.pixels[i][j].green = zoom.pixels[i][j/2].green;
-					zoom.pixels[i][j].blue = zoom.pixels[i][j/2].blue;
-					}
+					/*if(i%2 == 0)
+					{*/
+					zoom.pixels[i][j].red = img.pixels[aux][j/2].red;
+					zoom.pixels[i][j].green = img.pixels[aux][j/2].green;
+					zoom.pixels[i][j].blue = img.pixels[aux][j/2].blue;
+					/*}
 					else
 					{
-					zoom.pixels[i][j].red = zoom.pixels[i-1][j/2].red;
-					zoom.pixels[i][j].green = zoom.pixels[i-1][j/2].green;
-					zoom.pixels[i][j].blue = zoom.pixels[i-1][j/2].blue;
-					}
+					zoom.pixels[i][j].red = img.pixels[i-1][j/2].red;
+					zoom.pixels[i][j].green = img.pixels[i-1][j/2].green;
+					zoom.pixels[i][j].blue = img.pixels[i-1][j/2].blue;
+					}*/
 				}
 				else
 				{
-					if(i%2 == 0)
-					{
-					zoom.pixels[i][j].red = zoom.pixels[i][j-1/2].red;
-					zoom.pixels[i][j].green = zoom.pixels[i][j-1/2].green;
-					zoom.pixels[i][j].blue = zoom.pixels[i][j-1/2].blue;
-					}
+					/*if(i%2 == 0)
+					{*/
+					zoom.pixels[i][j].red = img.pixels[aux][(j-1)/2].red;
+					zoom.pixels[i][j].green = img.pixels[aux][(j-1)/2].green;
+					zoom.pixels[i][j].blue = img.pixels[aux][(j-1)/2].blue;
+					/*}
 					else
 					{
-					zoom.pixels[i][j].red = zoom.pixels[i-1][j-1/2].red;
-					zoom.pixels[i][j].green = zoom.pixels[i-1][j-1/2].green;
-					zoom.pixels[i][j].blue = zoom.pixels[i-1][j-1/2].blue;
-					}
+					zoom.pixels[i][j].red = img.pixels[i-1][j-1/2].red;
+					zoom.pixels[i][j].green = img.pixels[i-1][j-1/2].green;
+					zoom.pixels[i][j].blue = img.pixels[i-1][j-1/2].blue;
+					}*/
 				}
 			}
 		}
 	
 	return zoom;
-}*/
+}
