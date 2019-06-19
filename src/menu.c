@@ -119,9 +119,20 @@ void menuOptions()
 				
 			case ZOOM:
 				//zoom out function
-				/*image = readPPM(filepath);
-				image = zoomOut(image);
-				writePPM(filepath, image);*/
+				image = readPPM(filepath);
+				printf("Choose one option:\n");
+				printf("1 - Zoom in\n");
+				printf("2 - Zoom out\n");
+				scanf("%d",&op);
+				if(op == 1)
+				{
+					//image = zoomIn(image);
+				}
+				else
+				{
+					image = zoomOut(image);
+				}
+				writePPM(filepath, image);
 				break;
 
 			case EX1:
