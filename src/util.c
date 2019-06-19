@@ -41,4 +41,14 @@ Image copyImg(Image *originalImg)
 
 }
 
+Pixel **allocatePixels(unsint height, unsint width)
+{
+	Pixel **pixels = (Pixel **) calloc(height, sizeof(Pixel *));
 
+	for (int i = 0; i < height; i++)
+	{
+		pixels[i] = (Pixel *) calloc(width, sizeof(Pixel));
+	}
+
+	return pixels;
+}
