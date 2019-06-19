@@ -16,5 +16,6 @@
 Image rotate90DegreesRight(Image);
 Image rotate90DegreesLeft(Image);
 Image zoomOut(Image);
+Image zoomIn(Image);
 
 #endif
