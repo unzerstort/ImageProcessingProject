@@ -60,6 +60,7 @@ Image thresholding(Image img)
 
 	return img;
 }
+
 Image blurring(Image img)
 {
 	int i, j, k, l;
@@ -114,6 +115,63 @@ Image blurring(Image img)
 
 	return img;
 }
+
+Image sharpening(Image img)
+{
+	int i, j, k, l;
+	int sharp[3][3] = 	{{0,-1,0},
+				{-1,5,-1},
+				{0,-1,0}};
+	for(i = 1; i < img.height - 1; i++)
+	{
+		for(j = 1; j < img.width; j++)
+		{
+			int red = 0, green = 0, blue = 0;
+			for(k = 0; k < 3; k++)
+			{
+				for(l = 0; l < 3; l++)
+				{
+					red = red + (img.pixels[i - 1 + k][j - 1 + l].red) * sharp[k][l];
+					green = green + (img.pixels[i - 1 + k][j - 1 + l].green) * sharp[k][l];				
+					blue = blue + (img.pixels[i - 1 + k][j - 1 + l].blue) * sharp[k][l];		
+				}
+			}
+  			
+			if(red > 255)
+			{
+				red = 255;
+			}
+			if(red < 0)
+			{
+				red = 0;
+			}
+			if(green > 255)
+			{
+				green = 255;
+			}
+			if(green < 0)
+			{
+				green = 0;
+			}
+			if(blue > 255)
+			{
+				blue = 255;
+			}
+			if(blue < 0)
+			{
+				blue = 0;
+			}
+  			
+			img.pixels[i][j].red = red;
+			img.pixels[i][j].green = green;
+			img.pixels[i][j].blue = blue;
+		}
+	}
+
+	return img;
+
+}
+
 Image negative(Image img)
 {
 	int i, j;
