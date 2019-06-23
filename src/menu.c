@@ -137,7 +137,9 @@ void menuOptions()
 
 			case EX1:
 				// extra1 function (probably complementary colors)
-				// invertColor();	
+				image = readPPM(filepath);
+				image = negative(image);
+				writePPM(filepath, image);
 				break;
 
 			case EX2:
