@@ -60,4 +60,22 @@ Image thresholding(Image img)
 
 	return img;
 }
+Image negative(Image img)
+{
+	int i, j;
+	
+	for(i = 0; i < img.height; i++ )
+	{
+		for(j = 0; j < img.width; j++)
+		{
+			img.pixels[i][j].red = 255 - img.pixels[i][j].red;
+			img.pixels[i][j].green = 255 - img.pixels[i][j].green;
+			img.pixels[i][j].blue = 255 - img.pixels[i][j].blue;		
+		}
+	}
+	
+	printf("Negative successfully applied! ;)\n");
+
+	return img;
+}
 
