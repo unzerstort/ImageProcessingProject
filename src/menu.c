@@ -90,7 +90,9 @@ void menuOptions()
 
 			case SHARPENING:
 				//sharpening function
-				//sharpening();
+				image = readPPM(filepath);
+				image = sharpening(image);
+				writePPM(filepath, image);
 				break;
 
 			case ROTATE:
