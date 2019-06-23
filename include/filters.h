@@ -5,5 +5,6 @@
 
 Image grayscale(Image);
 Image thresholding(Image);
+Image blurring(Image);
 Image negative(Image);
 #endif
