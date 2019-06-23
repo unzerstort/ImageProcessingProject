@@ -83,10 +83,10 @@ void menuOptions()
 	
 			case BLURRING:
 				//blurring function
-			/*	image = readPPM(filepath);
+				image = readPPM(filepath);
 				image = blurring(image);
 				writePPM(filepath, image);
-			*/	break;
+				break;
 
 			case SHARPENING:
 				//sharpening function
