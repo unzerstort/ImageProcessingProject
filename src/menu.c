@@ -23,9 +23,10 @@ void printMenu()
     printf("\t2. Thresholding\n");
     printf("\t3. Blurring\n");
     printf("\t4. Sharpening\n");
-    printf("\t5. Rotate\n");
-    printf("\t6. Zoom\n");
-    printf("\t7. EXTRA 1\n");
+    printf("\t5. Edge Detection\n");
+    printf("\t6. Rotate\n");
+    printf("\t7. Zoom\n");
+    printf("\t8. EXTRA 1\n");
     printf("\t9. EXTRA 2\n");
     printf("\t0. Exit\n");
 }
@@ -39,6 +40,7 @@ typedef enum Options
 	THRESHOLDING,
 	BLURRING,
 	SHARPENING,
+	EDGEDETECTION,
 	ROTATE,
 	ZOOM,
 	EX1,
@@ -93,7 +95,14 @@ void menuOptions()
 				image = readPPM(filepath);
 				image = sharpening(image);
 				writePPM(filepath, image);
-				break;
+				break;	
+
+			case EDGEDETECTION:
+				//sharpening function
+				image = readPPM(filepath);
+				image = edgeDetection(image);
+				writePPM(filepath, image);
+				break;	
 
 			case ROTATE:
 				// rotate function
