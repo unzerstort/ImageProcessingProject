@@ -59,25 +59,27 @@ Image rotate90DegreesRight(Image img)
 	return rotated;
 }
 
-Image zoomIn(Image img)
+Image enlarge(Image img)
 {
 	int i, j;
-	Image zoom;
+	Image enlarged;
 	
-	zoom.height = img.height * 2;
-	zoom.width = img.width * 2;
-	zoom.maxRGB = img.maxRGB;
+	enlarged.height = img.height * 2;
+	enlarged.width = img.width * 2;
+	enlarged.maxRGB = img.maxRGB;
 		
-	zoom.pixels = (Pixel**) calloc(zoom.height,  sizeof(Pixel*));
-	for(i = 0; i < zoom.height; i++)
+	enlarged.pixels = (Pixel**) calloc(enlarged.height,  sizeof(Pixel*));
+
+	for (i = 0; i < enlarged.height; i++)
 	{
-		zoom.pixels[i] = (Pixel*) calloc(zoom.width, sizeof(Pixel));
+		enlarged.pixels[i] = (Pixel*) calloc(enlarged.width, sizeof(Pixel));
 	}	
 		
-		for(i = 0; i < zoom.height; i++)
+		for(i = 0; i < enlarged.height; i++)
 		{
 			int aux;
-			if(i%2 == 0)
+
+			if (i % 2 == 0)
 			{
 				aux = i/2;
 			}
@@ -85,64 +87,74 @@ Image zoomIn(Image img)
 			{
 				aux = (i - 1)/2;
 			}
-			for(j = 0; j < zoom.width; j++)
+			
+			for (j = 0; j < enlarged.width; j++)
+			
 			{
-				if(j%2 ==0)
+				if (j % 2 == 0)
 				{	
-					zoom.pixels[i][j].red = img.pixels[aux][j/2].red;
-					zoom.pixels[i][j].green = img.pixels[aux][j/2].green;
-					zoom.pixels[i][j].blue = img.pixels[aux][j/2].blue;
+					enlarged.pixels[i][j].red = img.pixels[aux][j/2].red;
+					enlarged.pixels[i][j].green = img.pixels[aux][j/2].green;
+					enlarged.pixels[i][j].blue = img.pixels[aux][j/2].blue;
 				}
 				else
 				{
-					zoom.pixels[i][j].red = img.pixels[aux][(j-1)/2].red;
-					zoom.pixels[i][j].green = img.pixels[aux][(j-1)/2].green;
-					zoom.pixels[i][j].blue = img.pixels[aux][(j-1)/2].blue;
+					enlarged.pixels[i][j].red = img.pixels[aux][(j-1)/2].red;
+					enlarged.pixels[i][j].green = img.pixels[aux][(j-1)/2].green;
+					enlarged.pixels[i][j].blue = img.pixels[aux][(j-1)/2].blue;
 				}
 			}
 		}
 	
-	return zoom;
+	return enlarged;
 }
-Image zoomOut(Image img)
-{	
-	int i, j;
-	Image zoom;
-	if(img.height % 2 == 0)
-	{
-		zoom.height = img.height / 2;	
-	}
-	else
-	{
-		zoom.height = (img.height - 1) / 2;	
-	}
-	if(img.width % 2 == 0)
-	{
-		zoom.width = img.width / 2;	
-	}
-	else
-	{
-		zoom.width = (img.width - 1) / 2;	
-	}
-	zoom.maxRGB = img.maxRGB;
-	printf("Tamanho: %d x %d\n", zoom.height, zoom.width);
-	zoom.pixels = (Pixel**) calloc(zoom.height,  sizeof(Pixel*));
-	for(i = 0; i < zoom.height; i++)
-	{
-		zoom.pixels[i] = (Pixel*) calloc(zoom.width, sizeof(Pixel));
-	}
-	int aux1=0, aux2=0;
-	for(i = 0; i < img.height; i+=2)
-	{
-		for(j = 0; j < img.width; j+=2)
+
+	Image reduce(Image img)
+	{	
+		int i, j;
+		Image reduced;
+
+		if (img.height % 2 == 0)
 		{
-			zoom.pixels[aux1][aux2].red = ((img.pixels[i][j].red + img.pixels[i+1][j].red + img.pixels[i+1][j+1].red + img.pixels[i][j+1].red)/4);
-			zoom.pixels[aux1][aux2].green = ((img.pixels[i][j].green + img.pixels[i+1][j].green + img.pixels[i+1][j+1].green + img.pixels[i][j+1].green)/4);
-			zoom.pixels[aux1][aux2].blue = ((img.pixels[i][j].blue + img.pixels[i+1][j].blue + img.pixels[i+1][j+1].blue + img.pixels[i][j+1].blue)/4);
-			aux2++;
+			reduced.height = img.height / 2;	
 		}
-		aux2 = 0;
-		aux1++;
-	}
-	return zoom;	
+		else
+		{
+			reduced.height = (img.height - 1) / 2;	
+		}
+		if (img.width % 2 == 0)
+		{
+			reduced.width = img.width / 2;	
+		}
+		else
+		{
+			reduced.width = (img.width - 1) / 2;	
+		}
+
+		reduced.maxRGB = img.maxRGB;
+		printf("Image size: %d x %d\n", reduced.height, reduced.width);
+		reduced.pixels = (Pixel**) calloc(reduced.height,  sizeof(Pixel*));
+
+		for (i = 0; i < reduced.height; i++)
+		{
+			reduced.pixels[i] = (Pixel*) calloc(reduced.width, sizeof(Pixel));
+		}
+
+		int aux1 = 0, aux2 = 0;
+
+		for (i = 0; i < img.height; i+=2)
+		{
+			for (j = 0; j < img.width; j+=2)
+			{
+				reduced.pixels[aux1][aux2].red = ((img.pixels[i][j].red + img.pixels[i+1][j].red + img.pixels[i+1][j+1].red + img.pixels[i][j+1].red)/4);
+				reduced.pixels[aux1][aux2].green = ((img.pixels[i][j].green + img.pixels[i+1][j].green + img.pixels[i+1][j+1].green + img.pixels[i][j+1].green)/4);
+				reduced.pixels[aux1][aux2].blue = ((img.pixels[i][j].blue + img.pixels[i+1][j].blue + img.pixels[i+1][j+1].blue + img.pixels[i][j+1].blue)/4);
+				aux2++;
+			}
+
+			aux2 = 0;
+			aux1++;
+		}
+
+	return reduced;	
 }
