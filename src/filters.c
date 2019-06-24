@@ -64,6 +64,21 @@ Image thresholding(Image img)
 Image blurring(Image img)
 {
 	int i, j, k, l;
+
+	Image blurred;
+
+	blurred.height = img.height;
+	blurred.width = img.width;
+	blurred.maxRGB = img.maxRGB;
+
+	blurred.pixels = (Pixel**) calloc(blurred.height, sizeof(Pixel*));
+	
+	for(i = 0; i < blurred.height; i++)
+	{
+		blurred.pixels[i] = (Pixel*) calloc(blurred.width, sizeof(Pixel));
+	}
+
+
 	float blur[3][3] = {{0.111111111,0.111111111,0.111111111},
                         {0.111111111,0.111111111,0.111111111},
                         {0.111111111,0.111111111,0.111111111}};
@@ -109,18 +124,31 @@ Image blurring(Image img)
 				blue = 0;
 			}
   			
-			img.pixels[i][j].red = red;
-			img.pixels[i][j].green = green;
-			img.pixels[i][j].blue = blue;
+			blurred.pixels[i][j].red = red;
+			blurred.pixels[i][j].green = green;
+			blurred.pixels[i][j].blue = blue;
 		}
 	}
 
-	return img;
+	return blurred;
 }
 
 Image sharpening(Image img)
 {
 	int i, j, k, l;
+	Image sharped;
+
+	sharped.height = img.height;
+	sharped.width = img.width;
+	sharped.maxRGB = img.maxRGB;
+
+	sharped.pixels = (Pixel**) calloc(sharped.height, sizeof(Pixel*));
+	
+	for(i = 0; i < sharped.height; i++)
+	{
+		sharped.pixels[i] = (Pixel*) calloc(sharped.width, sizeof(Pixel));
+	}
+
 	float sharp[3][3] = {{0,-1,0},
                         {-1,5,-1},
                         {0,-1,0}};
@@ -166,22 +194,35 @@ Image sharpening(Image img)
 				blue = 0;
 			}
   			
-			img.pixels[i][j].red = red;
-			img.pixels[i][j].green = green;
-			img.pixels[i][j].blue = blue;
+			sharped.pixels[i][j].red = red;
+			sharped.pixels[i][j].green = green;
+			sharped.pixels[i][j].blue = blue;
 		}
 	}
 
-	return img;
+	return sharped;
 
 }
 
 Image edgeDetection(Image img)
 {
 	int i, j, k, l;
-	float edge[3][3] = {{0.5,0,-0.5},
-	                    {0,0,0},
-                       	 {-0.5,0,0.5}};
+	Image edged;
+
+	edged.height = img.height;
+	edged.width = img.width;
+	edged.maxRGB = img.maxRGB;
+
+	edged.pixels = (Pixel**) calloc(edged.height, sizeof(Pixel*));
+	
+	for(i = 0; i < edged.height; i++)
+	{
+		edged.pixels[i] = (Pixel*) calloc(edged.width, sizeof(Pixel));
+	}
+
+	float edge[3][3] = {{1,0,-1},
+	                   {0,0,0},
+                       	   {-1,0,1}};
 
 	for (i = 1; i < img.height - 1; i++)
 	{
@@ -224,13 +265,13 @@ Image edgeDetection(Image img)
 				blue = 0;
 			}
   			
-			img.pixels[i][j].red = red;
-			img.pixels[i][j].green = green;
-			img.pixels[i][j].blue = blue;
+			edged.pixels[i][j].red = red;
+			edged.pixels[i][j].green = green;
+			edged.pixels[i][j].blue = blue;
 		}
 	}
 
-	return img;
+	return edged;
 
 }
 
