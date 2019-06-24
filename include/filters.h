@@ -8,5 +8,6 @@ Image thresholding(Image);
 Image blurring(Image);
 Image sharpening(Image);
 Image edgeDetection(Image);
-Image negative(Image);
+Image negativeColors(Image);
+
 #endif

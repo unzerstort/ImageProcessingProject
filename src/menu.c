@@ -31,7 +31,9 @@ void printMenu()
     printf("\t0. Exit\n");
 }
 
-// using typedef enum to define the number order of options (for instance, EXIT = 0, READDPPM = 1 and so on)
+/* using typedef enum to define the number order of options
+ * (for instance, EXIT = 0, READDPPM = 1 and so on)
+ */
 
 typedef enum Options
 {
@@ -131,25 +133,28 @@ void menuOptions()
 			case ZOOM:
 				//zoom out function
 				image = readPPM(filepath);
+
 				printf("Choose one option:\n");
-				printf("1 - Zoom in\n");
-				printf("2 - Zoom out\n");
+				printf("1 - Enlarge\n");
+				printf("2 - Reduce\n");
 				scanf("%d",&op);
-				if(op == 1)
+			
+				if (op == 1)
 				{
-					image = zoomIn(image);
+					image = enlarge(image);
 				}
 				else
 				{
-					image = zoomOut(image);
+					image = reduce(image);
 				}
+				
 				writePPM(filepath, image);
 				break;
 
 			case EX1:
 				// extra1 function (probably complementary colors)
 				image = readPPM(filepath);
-				image = negative(image);
+				image = negativeColors(image);
 				writePPM(filepath, image);
 				break;
 

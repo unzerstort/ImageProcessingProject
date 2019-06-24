@@ -12,7 +12,7 @@
 
 Image grayscale(Image newImg)
 {
-	int i, j;
+    int i, j;
 	unsint gray;
 
 	for (i = 0; i < newImg.height; i++)
@@ -64,17 +64,19 @@ Image thresholding(Image img)
 Image blurring(Image img)
 {
 	int i, j, k, l;
-	float blur[3][3] = 	{{0.111111111,0.111111111,0.111111111},
-				{0.111111111,0.111111111,0.111111111},
-				{0.111111111,0.111111111,0.111111111}};
-	for(i = 1; i < img.height - 1; i++)
+	float blur[3][3] = {{0.111111111,0.111111111,0.111111111},
+                        {0.111111111,0.111111111,0.111111111},
+                        {0.111111111,0.111111111,0.111111111}};
+
+	for (i = 1; i < img.height - 1; i++)
 	{
-		for(j = 1; j < img.width; j++)
+		for (j = 1; j < img.width; j++)
 		{
 			int red = 0, green = 0, blue = 0;
-			for(k = 0; k < 3; k++)
+
+			for (k = 0; k < 3; k++)
 			{
-				for(l = 0; l < 3; l++)
+				for (l = 0; l < 3; l++)
 				{
 					red = red + (img.pixels[i - 1 + k][j - 1 + l].red) * blur[k][l];
 					green = green + (img.pixels[i - 1 + k][j - 1 + l].green) * blur[k][l];				
@@ -82,27 +84,27 @@ Image blurring(Image img)
 				}
 			}
   			
-			if(red > 255)
+			if (red > 255)
 			{
 				red = 255;
 			}
-			if(red < 0)
+			if (red < 0)
 			{
 				red = 0;
 			}
-			if(green > 255)
+			if (green > 255)
 			{
 				green = 255;
 			}
-			if(green < 0)
+			if (green < 0)
 			{
 				green = 0;
 			}
-			if(blue > 255)
+			if (blue > 255)
 			{
 				blue = 255;
 			}
-			if(blue < 0)
+			if (blue < 0)
 			{
 				blue = 0;
 			}
@@ -119,17 +121,19 @@ Image blurring(Image img)
 Image sharpening(Image img)
 {
 	int i, j, k, l;
-	float sharp[3][3] = 	{{0,-1,0},
-				{-1,5,-1},
-				{0,-1,0}};
-	for(i = 1; i < img.height - 1; i++)
+	float sharp[3][3] = {{0,-1,0},
+                        {-1,5,-1},
+                        {0,-1,0}};
+
+	for (i = 1; i < img.height - 1; i++)
 	{
-		for(j = 1; j < img.width; j++)
+		for (j = 1; j < img.width; j++)
 		{
 			int red = 0, green = 0, blue = 0;
-			for(k = 0; k < 3; k++)
+
+			for (k = 0; k < 3; k++)
 			{
-				for(l = 0; l < 3; l++)
+				for (l = 0; l < 3; l++)
 				{
 					red = red + (img.pixels[i - 1 + k][j - 1 + l].red) * sharp[k][l];
 					green = green + (img.pixels[i - 1 + k][j - 1 + l].green) * sharp[k][l];				
@@ -137,27 +141,27 @@ Image sharpening(Image img)
 				}
 			}
   			
-			if(red > 255)
+			if (red > 255)
 			{
 				red = 255;
 			}
-			if(red < 0)
+			if (red < 0)
 			{
 				red = 0;
 			}
-			if(green > 255)
+			if (green > 255)
 			{
 				green = 255;
 			}
-			if(green < 0)
+			if (green < 0)
 			{
 				green = 0;
 			}
-			if(blue > 255)
+			if (blue > 255)
 			{
 				blue = 255;
 			}
-			if(blue < 0)
+			if (blue < 0)
 			{
 				blue = 0;
 			}
@@ -175,17 +179,19 @@ Image sharpening(Image img)
 Image edgeDetection(Image img)
 {
 	int i, j, k, l;
-	float edge[3][3] = 	{{-1,-1,-1},
-				{-1,8,-1},
-				{-1,-1,-1}};
-	for(i = 1; i < img.height - 1; i++)
+	float edge[3][3] = {{-1,-1,-1},
+	                    {-1,8,-1},
+                        {-1,-1,-1}};
+
+	for (i = 1; i < img.height - 1; i++)
 	{
-		for(j = 1; j < img.width; j++)
+		for (j = 1; j < img.width; j++)
 		{
 			int red = 0, green = 0, blue = 0;
-			for(k = 0; k < 3; k++)
+
+			for (k = 0; k < 3; k++)
 			{
-				for(l = 0; l < 3; l++)
+				for (l = 0; l < 3; l++)
 				{
 					red = red + (img.pixels[i - 1 + k][j - 1 + l].red) * edge[k][l];
 					green = green + (img.pixels[i - 1 + k][j - 1 + l].green) * edge[k][l];				
@@ -193,27 +199,27 @@ Image edgeDetection(Image img)
 				}
 			}
   			
-			if(red > 255)
+			if (red > 255)
 			{
 				red = 255;
 			}
-			if(red < 0)
+			if (red < 0)
 			{
 				red = 0;
 			}
-			if(green > 255)
+			if (green > 255)
 			{
 				green = 255;
 			}
-			if(green < 0)
+			if (green < 0)
 			{
 				green = 0;
 			}
-			if(blue > 255)
+			if (blue > 255)
 			{
 				blue = 255;
 			}
-			if(blue < 0)
+			if (blue < 0)
 			{
 				blue = 0;
 			}
@@ -228,13 +234,13 @@ Image edgeDetection(Image img)
 
 }
 
-Image negative(Image img)
+Image negativeColors(Image img)
 {
 	int i, j;
 	
-	for(i = 0; i < img.height; i++ )
+	for (i = 0; i < img.height; i++)
 	{
-		for(j = 0; j < img.width; j++)
+		for (j = 0; j < img.width; j++)
 		{
 			img.pixels[i][j].red = 255 - img.pixels[i][j].red;
 			img.pixels[i][j].green = 255 - img.pixels[i][j].green;
@@ -242,8 +248,7 @@ Image negative(Image img)
 		}
 	}
 	
-	printf("Negative successfully applied! ;)\n");
+	printf("Negative colors successfully applied! ;)\n");
 
 	return img;
 }
-
