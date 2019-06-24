@@ -76,9 +76,9 @@ Image blurring(Image img)
 			{
 				for(l = 0; l < 3; l++)
 				{
-					red = red + (img.pixels[i - 1 + k][j - 1 + l].red) * blur[k][l];
-					green = green + (img.pixels[i - 1 + k][j - 1 + l].green) * blur[k][l];				
-					blue = blue + (img.pixels[i - 1 + k][j - 1 + l].blue) * blur[k][l];		
+					red += (img.pixels[i - 1 + k][j - 1 + l].red) * blur[k][l];
+					green += (img.pixels[i - 1 + k][j - 1 + l].green) * blur[k][l];				
+					blue += (img.pixels[i - 1 + k][j - 1 + l].blue) * blur[k][l];		
 				}
 			}
   			
@@ -131,9 +131,9 @@ Image sharpening(Image img)
 			{
 				for(l = 0; l < 3; l++)
 				{
-					red = red + (img.pixels[i - 1 + k][j - 1 + l].red) * sharp[k][l];
-					green = green + (img.pixels[i - 1 + k][j - 1 + l].green) * sharp[k][l];				
-					blue = blue + (img.pixels[i - 1 + k][j - 1 + l].blue) * sharp[k][l];		
+					red += (img.pixels[i - 1 + k][j - 1 + l].red) * sharp[k][l];
+					green += (img.pixels[i - 1 + k][j - 1 + l].green) * sharp[k][l];				
+					blue += (img.pixels[i - 1 + k][j - 1 + l].blue) * sharp[k][l];		
 				}
 			}
   			
@@ -187,9 +187,9 @@ Image edgeDetection(Image img)
 			{
 				for(l = 0; l < 3; l++)
 				{
-					red = red + (img.pixels[i - 1 + k][j - 1 + l].red) * edge[k][l];
-					green = green + (img.pixels[i - 1 + k][j - 1 + l].green) * edge[k][l];				
-					blue = blue + (img.pixels[i - 1 + k][j - 1 + l].blue) * edge[k][l];		
+					red += (img.pixels[i - 1 + k][j - 1 + l].red) * edge[k][l];
+					green += (img.pixels[i - 1 + k][j - 1 + l].green) * edge[k][l];				
+					blue += (img.pixels[i - 1 + k][j - 1 + l].blue) * edge[k][l];		
 				}
 			}
   			
