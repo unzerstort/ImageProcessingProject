@@ -275,6 +275,77 @@ Image edgeDetection(Image img)
 
 }
 
+Image emboss(Image img)
+{
+	int i, j, k, l;
+	Image embossed;
+
+	embossed.height = img.height;
+	embossed.width = img.width;
+	embossed.maxRGB = img.maxRGB;
+
+	embossed.pixels = (Pixel**) calloc(embossed.height, sizeof(Pixel*));
+	
+	for(i = 0; i < embossed.height; i++)
+	{
+		embossed.pixels[i] = (Pixel*) calloc(embossed.width, sizeof(Pixel));
+	}
+
+	float emb[3][3] = {{-2,-1,0},
+	                   {-1,1,1},
+                       	   {0,1,2}};
+
+	for (i = 1; i < img.height - 1; i++)
+	{
+		for (j = 1; j < img.width; j++)
+		{
+			int red = 0, green = 0, blue = 0;
+
+			for (k = 0; k < 3; k++)
+			{
+				for (l = 0; l < 3; l++)
+				{
+					red += (img.pixels[i - 1 + k][j - 1 + l].red) * emb[k][l];
+					green += (img.pixels[i - 1 + k][j - 1 + l].green) * emb[k][l];				
+					blue += (img.pixels[i - 1 + k][j - 1 + l].blue) * emb[k][l];		
+				}
+			}
+  			
+			if (red > 255)
+			{
+				red = 255;
+			}
+			if (red < 0)
+			{
+				red = 0;
+			}
+			if (green > 255)
+			{
+				green = 255;
+			}
+			if (green < 0)
+			{
+				green = 0;
+			}
+			if (blue > 255)
+			{
+				blue = 255;
+			}
+			if (blue < 0)
+			{
+				blue = 0;
+			}
+  			
+			embossed.pixels[i][j].red = red;
+			embossed.pixels[i][j].green = green;
+			embossed.pixels[i][j].blue = blue;
+		}
+	}
+
+	return embossed;
+
+}
+
 Image negativeColors(Image img)
 {
 	int i, j;
