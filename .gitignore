@@ -1,3 +1,4 @@
 *.swp
 objects/
 exe
+tests/*.ppm
