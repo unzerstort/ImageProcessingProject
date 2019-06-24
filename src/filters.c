@@ -179,9 +179,9 @@ Image sharpening(Image img)
 Image edgeDetection(Image img)
 {
 	int i, j, k, l;
-	float edge[3][3] = {{-1,-1,-1},
-	                    {-1,8,-1},
-                        {-1,-1,-1}};
+	float edge[3][3] = {{0.5,0,-0.5},
+	                    {0,0,0},
+                       	 {-0.5,0,0.5}};
 
 	for (i = 1; i < img.height - 1; i++)
 	{
