@@ -102,6 +102,7 @@ void menuOptions()
 			case EDGEDETECTION:
 				//sharpening function
 				image = readPPM(filepath);
+				image = grayscale(image);
 				image = edgeDetection(image);
 				writePPM(filepath, image);
 				break;	
