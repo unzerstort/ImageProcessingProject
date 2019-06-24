@@ -161,7 +161,9 @@ void menuOptions()
 
 			case EX2:
 				//extra2 function (probably image inverter)
-				//invertImage();
+				image = readPPM(filepath);
+				image = emboss(image);
+				writePPM(filepath, image);				
 				break;
 				
 			default:
