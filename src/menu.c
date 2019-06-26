@@ -18,7 +18,7 @@ void printMenu()
     printf("    |                                                                     |\n");
     printf("     ---------------------------------------------------------------------\n");
     printf("\n");
-    printf("\tChoose the options you want by turn:\n");
+    printf("\tChoose an option below:\n");
     printf("\t1. Gray scale\n");
     printf("\t2. Thresholding\n");
     printf("\t3. Blurring\n");
@@ -26,9 +26,9 @@ void printMenu()
     printf("\t5. Edge Detection\n");
     printf("\t6. Rotate\n");
     printf("\t7. Zoom\n");
-    printf("\t8. EXTRA 1\n");
-    printf("\t9. EXTRA 2\n");
+    printf("\t8. Extra filters\n");
     printf("\t0. Exit\n");
+	printf("\n");
 }
 
 /* using typedef enum to define the number order of options
@@ -45,8 +45,7 @@ typedef enum Options
 	EDGEDETECTION,
 	ROTATE,
 	ZOOM,
-	NEGATIVE,
-	EMBOSSING
+	EXTRAS
 } Options;
 
 /* this guy here will receive the user's entered number and 
@@ -56,7 +55,7 @@ typedef enum Options
 
 void menuOptions()
 {
-	int aux = 1, op;
+	int aux = 1, op, choice, intensity;
 	Options option;
     scanf("%d", &option);
 
@@ -68,7 +67,7 @@ void menuOptions()
 		{
 			case EXIT:
 				aux = 0;
-				printf("Exiting the program...\n");
+				printf("\tExiting program...\n\n");
 				break;
 					
 			case GRAYSCALE:
@@ -110,9 +109,9 @@ void menuOptions()
 				// rotate function
 				image = readPPM(filepath);
 				printf("\tChoose one option:\n");
-				printf("\t1 - Rotation 90 degrees left\n");
-				printf("\t2 - Rotation 90 degrees right\n");
-				printf("\t3 - Rotation 180 degrees\n");
+				printf("\t1. Rotate 90 degrees left\n");
+				printf("\t2. Rotate 90 degrees right\n");
+				printf("\t3. Rotate 180 degrees\n");
 				scanf("%d",&op);
 
 				if (op == 1)
@@ -128,6 +127,7 @@ void menuOptions()
 					image = rotate90DegreesLeft(image);
 					image = rotate90DegreesLeft(image);
 				}
+
 				writePPM(filepath, image);
 				break;
 				
@@ -136,33 +136,64 @@ void menuOptions()
 				image = readPPM(filepath);
 
 				printf("\tChoose one option:\n");
-				printf("\t1 - Enlarge\n");
-				printf("\t2 - Reduce\n");
+				printf("\t1. Enlarge\n");
+				printf("\t2. Reduce\n");
 				scanf("%d",&op);
 			
 				if (op == 1)
 				{
 					image = enlarge(image);
 				}
-				else
+				else if (op == 2)
 				{
 					image = reduce(image);
+				}
+				else
+				{
+					printf("Invalid option.\n");
 				}
 				
 				writePPM(filepath, image);
 				break;
 
-			case NEGATIVE:
-				// extra1 function (probably complementary colors)
-				image = readPPM(filepath);
-				image = negativeColors(image);
-				writePPM(filepath, image);
-				break;
+			case EXTRAS:
+				printf("\tThis is the extra filters' menu!\n");
+				printf("\tChoose any of the options below\n\n");
+				printf("\t1. Negative colors\n");
+				printf("\t2. Embossing\n");
+				printf("\t3. Blacklight\n");
+		//		printf("\t4. \n");
+				
+				scanf("%d", &choice);
+				
+				if (choice == 1)
+				{
+					image = readPPM(filepath);
+					image = negativeColors(image);
+					writePPM(filepath, image);
+				}
+				else if (choice == 2)
+				{
+					image = readPPM(filepath);
+					image = embossing(image);
+					writePPM(filepath, image);				
+				}
+				else if (choice == 3)
+				{
+					printf("\tNow, enter a number between 1 and 7 in order to define the filter's brightness: ");
+					scanf("%d", &intensity);
 
-			case EMBOSSING:
-				image = readPPM(filepath);
-				image = embossing(image);
-				writePPM(filepath, image);				
+					image = readPPM(filepath);
+					image = blacklight(image, intensity);
+					writePPM(filepath, image);
+				}
+			/*	else if (choice == 4)
+				{
+					image = readPPM(filepath);
+					image = (image);
+					writePPM(filepath, image);
+				}
+			*/
 				break;
 				
 			default:
