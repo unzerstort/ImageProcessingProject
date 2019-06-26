@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include "util.h"
+#include "filters.h"
     
 /*  _____________________________________
  * |                                     |
@@ -69,3 +70,18 @@ void freeImage(Image *img)
 	free(img);
 }
 
+Image applyBlur(Image img, int q)
+{
+
+	if(q > 0)
+	{
+		img = blurring(img);
+		img = applyBlur(img, q - 1);
+	}
+	if(q == 0)
+	{
+	printf("\tBlurring successfully applied! :)\n");
+	}
+
+	return img;
+}
