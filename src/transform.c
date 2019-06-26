@@ -66,8 +66,8 @@ Image rotate180Degrees(Image img)
 	int i, j;
 	Image rotated;
 
-	rotated.height = img.width;
-	rotated.width = img.height;
+	rotated.height = img.height;
+	rotated.width = img.width;
 	rotated.maxRGB = img.maxRGB;
 
 	rotated.pixels = (Pixel**) calloc(rotated.height, sizeof(Pixel*));
@@ -81,9 +81,9 @@ Image rotate180Degrees(Image img)
 	{
 		for (j = 0; j < img.height; j++)
 		{	
-			rotated.pixels[i][j].red = img.pixels[img.width - i - 1][img.height - j - 1].red;
-			rotated.pixels[i][j].green = img.pixels[img.width - i - 1][img.height - j - 1].green;
-			rotated.pixels[i][j].blue = img.pixels[img.width - i - 1][img.height - j - 1].blue;
+			rotated.pixels[i][j].red = img.pixels[img.height - i - 1][img.width - j - 1].red;
+			rotated.pixels[i][j].green = img.pixels[img.height - i - 1][img.width - j - 1].green;
+			rotated.pixels[i][j].blue = img.pixels[img.height - i - 1][img.width - j - 1].blue;
 		}
 
 	}
