@@ -45,8 +45,8 @@ typedef enum Options
 	EDGEDETECTION,
 	ROTATE,
 	ZOOM,
-	EX1,
-	EX2
+	NEGATIVE,
+	EMBOSSING
 } Options;
 
 /* this guy here will receive the user's entered number and 
@@ -100,9 +100,8 @@ void menuOptions()
 				break;	
 
 			case EDGEDETECTION:
-				//sharpening function
+				//edge detection function
 				image = readPPM(filepath);
-				image = grayscale(image);
 				image = edgeDetection(image);
 				writePPM(filepath, image);
 				break;	
@@ -110,16 +109,17 @@ void menuOptions()
 			case ROTATE:
 				// rotate function
 				image = readPPM(filepath);
-				printf("Choose one option:\n");
-				printf("1 - Rotation 90 degrees left\n");
-				printf("2 - Rotation 90 degrees right\n");
-				printf("3 - Rotation 180 degrees\n");
+				printf("\tChoose one option:\n");
+				printf("\t1 - Rotation 90 degrees left\n");
+				printf("\t2 - Rotation 90 degrees right\n");
+				printf("\t3 - Rotation 180 degrees\n");
 				scanf("%d",&op);
-				if(op == 1)
+
+				if (op == 1)
 				{
 					image = rotate90DegreesLeft(image);
 				}
-				else if(op == 2)
+				else if (op == 2)
 				{
 					image = rotate90DegreesRight(image);
 				}
@@ -135,9 +135,9 @@ void menuOptions()
 				//zoom out function
 				image = readPPM(filepath);
 
-				printf("Choose one option:\n");
-				printf("1 - Enlarge\n");
-				printf("2 - Reduce\n");
+				printf("\tChoose one option:\n");
+				printf("\t1 - Enlarge\n");
+				printf("\t2 - Reduce\n");
 				scanf("%d",&op);
 			
 				if (op == 1)
@@ -152,22 +152,21 @@ void menuOptions()
 				writePPM(filepath, image);
 				break;
 
-			case EX1:
+			case NEGATIVE:
 				// extra1 function (probably complementary colors)
 				image = readPPM(filepath);
 				image = negativeColors(image);
 				writePPM(filepath, image);
 				break;
 
-			case EX2:
-				//extra2 function (probably image inverter)
+			case EMBOSSING:
 				image = readPPM(filepath);
-				image = emboss(image);
+				image = embossing(image);
 				writePPM(filepath, image);				
 				break;
 				
 			default:
-				printf("Invalid option, try again.\n");
+				printf("\tInvalid option, try again.\n");
 		}
 			
 		if (aux == 1)

@@ -7,22 +7,22 @@ Image readPPM(char *filepath)
 {
 	filepath = calloc(100, sizeof(char));
 
-	printf("Insert the path of the PPM file you wish to process: ");
+	printf("\tInsert the path of the PPM file you wish to process: ");
 	scanf("%s", filepath);
 
 	FILE *image;
 	image = fopen(filepath, "r");
 
-	printf("Reading image file...\n");
+	printf("\tReading image file...\n");
 
 	if (image == NULL)
 	{
-		printf("File doesn't exist!\n");
+		printf("\tFile doesn't exist!\n");
 		exit(1);
 	}
 	else
 	{
-		printf("File loaded successfully :)\n");
+		printf("\tFile loaded successfully :)\n\n");
 	}
 
 	Image img;
@@ -33,34 +33,34 @@ Image readPPM(char *filepath)
 	// reading first line to check the image format (P3 or not)
 	if (format[0] != 'P' || format[1] != '3')
 	{
-		printf("Wrong image format (it should be 'P3')!\n");
+		printf("\tWrong image format (it should be 'P3')!\n");
 		fclose(image);
 	}
 	else
 	{
-		printf("yay! you got the right image format :D\n");
+		printf("\tyay! you got the right image format :D\n\n");
 	}
 
 	// getting the image's width and height!
 	if	(!fscanf(image, "%u %u\n", &img.width, &img.height))
 	{
-		fprintf(stderr, "Invalid image dimensions.\n");
+		fprintf(stderr, "\tInvalid image dimensions.\n");
 		fclose(image);
 		exit(1);
 	}
 	else
 	{
-		printf("Dimensions (Width x Height): %u x %u pixels.\n", img.width, img.height);
+		printf("\tDimensions (Width x Height): %u x %u pixels.\n", img.width, img.height);
 	}
 
 	// reading maximum RGB value
 	if (fscanf(image, "%u", &img.maxRGB) != 1)
 	{
-		fprintf(stderr, "Invalid maximum RBG value.\n");
+		fprintf(stderr, "\tInvalid maximum RBG value.\n");
 	}
 	else
 	{
-		printf("The maximum RGB value is: %u.\n", img.maxRGB);
+		printf("\tThe maximum RGB value is: %u.\n", img.maxRGB);
 	}
 
 	// pixel mapping
@@ -76,11 +76,11 @@ Image readPPM(char *filepath)
 			++loadedPix;
 
 			//uncomment the next line if you want to see the actual pixels
-			//printf("rgb(%hhu, %hhu, %hhu)\n", img.pixels[i][j].red, img.pixels[i][j].green, img.pixels[i][j].blue);
+			//printf("\trgb(%hhu, %hhu, %hhu)\n", img.pixels[i][j].red, img.pixels[i][j].green, img.pixels[i][j].blue);
 		}
 	}
 
-	printf("Loaded pixels: %d\n", loadedPix);
+	printf("\tLoaded pixels: %d\n\n", loadedPix);
 
 	return img;
 }
@@ -89,8 +89,9 @@ void writePPM(char *filepath, Image img)
 {
 	filepath = calloc(100, sizeof(char));
 
-	printf("Insert the file's destination, as well as its new name in the end.\n For instance: /home/user/ImageProcessing-ITP/newfile.ppm.\n");
+	printf("\tInsert the file's destination, as well as its new name in the end: ");
 	scanf("%s", filepath);
+	printf("\n");
 
 	FILE *outImage;
 	outImage = fopen(filepath, "w");
@@ -112,6 +113,8 @@ void writePPM(char *filepath, Image img)
 	}
 
 	fclose(outImage);
+
+	printf("\tImage saved successfully! :)\n");
 
 	return;
 }
