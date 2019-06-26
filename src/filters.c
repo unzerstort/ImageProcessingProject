@@ -133,10 +133,7 @@ Image blurring(Image img)
 			blurred.pixels[i][j].green = green;
 			blurred.pixels[i][j].blue = blue;
 		}
-	}
-
-
-	printf("\tBlurring successfully applied! :)\n");
+	};
 
 	return blurred;
 }
