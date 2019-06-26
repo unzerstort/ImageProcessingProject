@@ -55,7 +55,7 @@ typedef enum Options
 
 void menuOptions()
 {
-	int aux = 1, choice, intensity;
+	int aux = 1, q, choice, intensity;
 	Options option;
     scanf("%d", &option);
 
@@ -87,7 +87,9 @@ void menuOptions()
 			case BLURRING:
 				//blurring function
 				image = readPPM(filepath);
-				image = blurring(image);
+				printf("\tChoose the intesity of your blur:\n");
+				scanf("%d", &q);
+				image = applyBlur(image, q);
 				writePPM(filepath, image);
 				break;
 
