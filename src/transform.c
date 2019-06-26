@@ -91,6 +91,66 @@ Image rotate180Degrees(Image img)
 	return rotated;
 }
 
+Image horizontalReflection(Image img)
+{
+	int i, j;
+	Image rotated;
+
+	rotated.height = img.height;
+	rotated.width = img.width;
+	rotated.maxRGB = img.maxRGB;
+
+	rotated.pixels = (Pixel**) calloc(rotated.height, sizeof(Pixel*));
+	
+	for(i = 0; i < rotated.height; i++)
+	{
+		rotated.pixels[i] = (Pixel*) calloc(rotated.width, sizeof(Pixel));
+	}
+
+	for (i = 0; i < img.height; i++)
+	{
+		for (j = 0; j < img.width; j++)
+		{	
+			rotated.pixels[i][j].red = img.pixels[img.width - i - 1][j].red;
+			rotated.pixels[i][j].green = img.pixels[img.width - i - 1][j].green;
+			rotated.pixels[i][j].blue = img.pixels[img.width - i - 1][j].blue;
+		}
+
+	}
+
+	return rotated;
+}
+
+Image verticalReflection(Image img)
+{
+	int i, j;
+	Image rotated;
+
+	rotated.height = img.height;
+	rotated.width = img.width;
+	rotated.maxRGB = img.maxRGB;
+
+	rotated.pixels = (Pixel**) calloc(rotated.height, sizeof(Pixel*));
+	
+	for(i = 0; i < rotated.height; i++)
+	{
+		rotated.pixels[i] = (Pixel*) calloc(rotated.width, sizeof(Pixel));
+	}
+
+	for (i = 0; i < img.height; i++)
+	{
+		for (j = 0; j < img.width; j++)
+		{	
+			rotated.pixels[i][j].red = img.pixels[i][img.height - j - 1].red;
+			rotated.pixels[i][j].green = img.pixels[i][img.height - j - 1].green;
+			rotated.pixels[i][j].blue = img.pixels[i][img.height - j - 1].blue;
+		}
+
+	}
+
+	return rotated;
+}
+
 Image enlarge(Image img)
 {
 	int i, j;
