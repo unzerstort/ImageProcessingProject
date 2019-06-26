@@ -366,4 +366,60 @@ Image negativeColors(Image img)
 	return img;
 }
 
+Image blacklight(Image img, int intensity)
+{
+	int i, j;
+	Image blackL;
+	unsint luminance;
+	unsint red = 0, green = 0, blue = 0;
+
+	blackL.height = img.height;
+	blackL.width = img.width;
+	blackL.maxRGB = img.maxRGB;
+
+	for (i = 0; i < img.height; i++)
+	{
+		for (j = 0; j < img.width; j++)
+		{
+			luminance = ((img.pixels[i][j].red)*0.3) + ((img.pixels[i][j].green)*0.59) + ((img.pixels[i][j].blue)*0.11);
+
+			red = abs(img.pixels[i][j].red - luminance) * intensity;
+			green = abs(img.pixels[i][j].green - luminance) * intensity;
+			blue = abs(img.pixels[i][j].blue - luminance) * intensity;
+
+			if (red > 255)
+			{
+				red = 255;
+			}
+			if (red < 0)
+			{
+				red = 0;
+			}
+			if (green > 255)
+			{
+				green = 255;
+			}
+			if (green < 0)
+			{
+				green = 0;
+			}
+			if (blue > 255)
+			{
+				blue = 255;
+			}
+			if (blue < 0)
+			{
+				blue = 0;
+			}
+
+			blackL.pixels[i][j].red = red;
+			blackL.pixels[i][j].green = green;
+			blackL.pixels[i][j].blue = blue;	
+		}
+	}
+
+	printf("\tBlacklight successfully applied!\n");
+
+	return blackL;
+}
 

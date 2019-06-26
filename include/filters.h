@@ -19,5 +19,6 @@ Image sharpening(Image);
 Image edgeDetection(Image);
 Image embossing(Image);
 Image negativeColors(Image);
+Image blacklight(Image, int);
 
 #endif
