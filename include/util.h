@@ -52,5 +52,6 @@ typedef struct Image
 Image copyImg(Image *);
 Pixel **allocatePixels(unsint, unsint);
 void freeImage(Image *);
+Image applyBlur(Image, int);
 
 #endif
