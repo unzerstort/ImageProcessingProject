@@ -55,7 +55,7 @@ typedef enum Options
 
 void menuOptions()
 {
-	int aux = 1, op, choice, intensity;
+	int aux = 1, choice, intensity;
 	Options option;
     scanf("%d", &option);
 
@@ -112,22 +112,20 @@ void menuOptions()
 				printf("\t1. Rotate 90 degrees left\n");
 				printf("\t2. Rotate 90 degrees right\n");
 				printf("\t3. Rotate 180 degrees\n");
-				scanf("%d",&op);
+				scanf("%d",&choice);
 
-				if (op == 1)
+				if (choice == 1)
 				{
 					image = rotate90DegreesLeft(image);
 				}
-				else if (op == 2)
+				else if (choice == 2)
 				{
 					image = rotate90DegreesRight(image);
 				}
 				else
 				{
-					image = rotate90DegreesLeft(image);
-					image = rotate90DegreesLeft(image);
+					image = rotate180Degrees(image);
 				}
-
 				writePPM(filepath, image);
 				break;
 				
@@ -138,13 +136,13 @@ void menuOptions()
 				printf("\tChoose one option:\n");
 				printf("\t1. Enlarge\n");
 				printf("\t2. Reduce\n");
-				scanf("%d",&op);
+				scanf("%d",&choice);
 			
-				if (op == 1)
+				if (choice == 1)
 				{
 					image = enlarge(image);
 				}
-				else if (op == 2)
+				else if (choice == 2)
 				{
 					image = reduce(image);
 				}
