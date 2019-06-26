@@ -14,7 +14,10 @@
  * |_____________________________________|
  */
 
-// just in case you are wondering what exactly this function is doing: it copies the matrix of the original image into the one we'll actually manipulate, so that the original one doesn't go through the changes.
+/* just in case you are wondering what exactly this function is doing: 
+ * it copies the matrix of the original image into the one we'll actually 
+ * manipulate, so that the original one doesn't go through the changes.
+ */
 
 Image copyImg(Image *originalImg)
 {	
@@ -41,6 +44,7 @@ Image copyImg(Image *originalImg)
 
 }
 
+// this function allocates the pixel matrix
 Pixel **allocatePixels(unsint height, unsint width)
 {
 	Pixel **pixels = (Pixel **) calloc(height, sizeof(Pixel *));
@@ -52,3 +56,16 @@ Pixel **allocatePixels(unsint height, unsint width)
 
 	return pixels;
 }
+
+// this guy here frees stuff
+void freeImage(Image *img)
+{
+	for (unsint i = 0; i < img->height; i++)
+	{
+		free(img->pixels[i]);
+	}
+
+	free(img->pixels);
+	free(img);
+}
+
