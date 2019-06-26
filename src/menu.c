@@ -112,6 +112,9 @@ void menuOptions()
 				printf("\t1. Rotate 90 degrees left\n");
 				printf("\t2. Rotate 90 degrees right\n");
 				printf("\t3. Rotate 180 degrees\n");
+				printf("\t4. Horizontal Reflection\n");
+				printf("\t5. Vertical Reflection\n");
+
 				scanf("%d",&choice);
 
 				if (choice == 1)
@@ -122,9 +125,17 @@ void menuOptions()
 				{
 					image = rotate90DegreesRight(image);
 				}
-				else
+				else if (choice == 3)
 				{
 					image = rotate180Degrees(image);
+				}
+				else if (choice == 4)
+				{
+					image = horizontalReflection(image);
+				}
+				else
+				{
+					image = verticalReflection(image);
 				}
 				writePPM(filepath, image);
 				break;
