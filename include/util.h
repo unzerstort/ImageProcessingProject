@@ -2,8 +2,10 @@
 #define UTIL_HEADER
 
 /*
-we're using unsigned char because its range is [0, 255], which is the exact interval of values the RGB color system can have :)
-concerning the unsigned int, we're using it just to avoid the negative numbers, nothing too complex
+ * we're using unsigned char because its range is [0, 255], which is 
+ * the exact interval of values the RGB color system can have :)
+ * concerning the unsigned integer, we're using it just to avoid
+ * negative numbers, nothing too complex
 */
 
 #define uchar unsigned char
@@ -14,13 +16,16 @@ concerning the unsigned int, we're using it just to avoid the negative numbers, 
 
 /* ________________________________________
  *|                                        |
- *|   here we define the structs we'll	   |
- *|	  be using inside each function, as    |
- *|	  well as the signatures from the      |
- *|	  utilitary minor functions!           |
+ *|   here we define the structs we'll     |
+ *|   be using inside each function, as    |
+ *|   well as the signatures from the      |
+ *|   utilitary minor functions!           |
  *|________________________________________|
 */
 
+/* this struct will help us with the manipulation
+ * of RGB values in a more understandable way
+ */
 typedef struct Pixel
 {
 	uchar red;
@@ -28,6 +33,10 @@ typedef struct Pixel
 	uchar blue;
 } Pixel;
 
+/* the Image struct contains all data we'll obtain
+ * when reading the image file and will manipulate
+ * later
+ */
 typedef struct Image
 {
 	unsint height;
@@ -36,6 +45,11 @@ typedef struct Image
 	Pixel **pixels;
 } Image;
 
-Image copyImg(Image *newImg);
+/* these are the auxiliary functions' signatures.
+ * for further informations about them, see read.c
+ */
+Image copyImg(Image *);
+Pixel **allocatePixels(unsint, unsint);
+void freeImage(Image *);
 
 #endif

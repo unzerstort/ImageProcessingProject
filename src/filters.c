@@ -1,40 +1,51 @@
 #include "filters.h"
 
-/* _________________________________
- *|                                 |
- *|    here we'll implement all     |
- *|    the filters we use through   |
- *|    the project :)               |
- *|_________________________________|
+/* ______________________________
+ *|                              |
+ *|  here we'll implement all    |
+ *|  the filters we use through  |
+ *|  the project :)              |
+ *|______________________________|
 */
 
-// in case you are wondering how does this first one work, here we use themost common formula used in image processors (like Photoshop, GIMP, etc.),that basically adjusts each RGB color to the actual perception of the human eye. nice, huh? 
+/* in case you are wondering how does this first one work, here we use the
+ * most common formula used in image processors (like Photoshop, GIMP, etc.), 
+ * that basically adjusts each RGB color to the actual perception of the human eye.
+ * nice, huh?
+ */
 
-Image grayscale(Image newImg)
+Image grayscale(Image img)
 {
     int i, j;
 	unsint gray;
 
-	for (i = 0; i < newImg.height; i++)
+	for (i = 0; i < img.height; i++)
 	{
-		for (j = 0; j < newImg.width; j++)
+		for (j = 0; j < img.width; j++)
 		{
-			gray = ((newImg.pixels[i][j].red)*0.3) + ((newImg.pixels[i][j].green)*0.59) + ((newImg.pixels[i][j].blue)*0.11);
+			gray = ((img.pixels[i][j].red)*0.3) + ((img.pixels[i][j].green)*0.59) + ((img.pixels[i][j].blue)*0.11);
 
-			newImg.pixels[i][j].red = gray;
-			newImg.pixels[i][j].green = gray;
-			newImg.pixels[i][j].blue = gray;
+			img.pixels[i][j].red = gray;
+			img.pixels[i][j].green = gray;
+			img.pixels[i][j].blue = gray;
 		}
 	}
 
-	printf("Grayscale successfully applied! :)\n");
+	printf("\tGrayscale successfully applied! :)\n");
 
-	return newImg;
+	return img;
 }
 
+/* the thresholding function converts a grayscaled image
+ * to a binary image, verifying if the RGB values of it
+ * are bigger or smaller than the threshold's, which is
+ * the maximum RGB value divided by 2
+ */
 Image thresholding(Image img)
 {
 	int i, j;
+	img = grayscale(img);
+
 	uchar threshold = img.maxRGB/2;
 
 	for (i = 0; i < img.height; i++)
@@ -56,7 +67,7 @@ Image thresholding(Image img)
 		}
 	}
 
-	printf("Threshold successfully applied! :) \n");
+	printf("\tThresholding successfully applied! :) \n");
 
 	return img;
 }
@@ -71,17 +82,11 @@ Image blurring(Image img)
 	blurred.width = img.width;
 	blurred.maxRGB = img.maxRGB;
 
-	blurred.pixels = (Pixel**) calloc(blurred.height, sizeof(Pixel*));
-	
-	for(i = 0; i < blurred.height; i++)
-	{
-		blurred.pixels[i] = (Pixel*) calloc(blurred.width, sizeof(Pixel));
-	}
+	blurred.pixels = allocatePixels(blurred.height, blurred.width);
 
-
-	float blur[3][3] = {{0.111111111,0.111111111,0.111111111},
-                        {0.111111111,0.111111111,0.111111111},
-                        {0.111111111,0.111111111,0.111111111}};
+	float blur[3][3] = {{0.111111111, 0.111111111, 0.111111111},
+                        {0.111111111, 0.111111111, 0.111111111},
+                        {0.111111111, 0.111111111, 0.111111111}};
 
 	for (i = 1; i < img.height - 1; i++)
 	{
@@ -130,6 +135,9 @@ Image blurring(Image img)
 		}
 	}
 
+
+	printf("\tBlurring successfully applied! :)\n");
+
 	return blurred;
 }
 
@@ -142,16 +150,11 @@ Image sharpening(Image img)
 	sharped.width = img.width;
 	sharped.maxRGB = img.maxRGB;
 
-	sharped.pixels = (Pixel**) calloc(sharped.height, sizeof(Pixel*));
+	sharped.pixels = allocatePixels(sharped.height, sharped.width);
 	
-	for(i = 0; i < sharped.height; i++)
-	{
-		sharped.pixels[i] = (Pixel*) calloc(sharped.width, sizeof(Pixel));
-	}
-
-	float sharp[3][3] = {{0,-1,0},
-                        {-1,5,-1},
-                        {0,-1,0}};
+	float sharp[3][3] = { {0, -1, 0 },
+                          {-1, 5, -1},
+                          {0, -1, 0 } };
 
 	for (i = 1; i < img.height - 1; i++)
 	{
@@ -200,6 +203,8 @@ Image sharpening(Image img)
 		}
 	}
 
+	printf("\tSharpening successfully applied! :)\n");
+
 	return sharped;
 
 }
@@ -207,22 +212,19 @@ Image sharpening(Image img)
 Image edgeDetection(Image img)
 {
 	int i, j, k, l;
-	Image edged;
+	Image edge;
 
-	edged.height = img.height;
-	edged.width = img.width;
-	edged.maxRGB = img.maxRGB;
+	img = grayscale(img);
 
-	edged.pixels = (Pixel**) calloc(edged.height, sizeof(Pixel*));
-	
-	for(i = 0; i < edged.height; i++)
-	{
-		edged.pixels[i] = (Pixel*) calloc(edged.width, sizeof(Pixel));
-	}
+	edge.height = img.height;
+	edge.width = img.width;
+	edge.maxRGB = img.maxRGB;
 
-	float edge[3][3] = {{1,0,-1},
-	                   {0,0,0},
-                       	   {-1,0,1}};
+	edge.pixels = allocatePixels(edge.height, edge.width);
+
+	float edgeK[3][3] = { { 1, 0, -1},
+                          { 0, 0, 0 },
+                          { -1, 0, 1} };
 
 	for (i = 1; i < img.height - 1; i++)
 	{
@@ -234,9 +236,9 @@ Image edgeDetection(Image img)
 			{
 				for (l = 0; l < 3; l++)
 				{
-					red += (img.pixels[i - 1 + k][j - 1 + l].red) * edge[k][l];
-					green += (img.pixels[i - 1 + k][j - 1 + l].green) * edge[k][l];				
-					blue += (img.pixels[i - 1 + k][j - 1 + l].blue) * edge[k][l];		
+					red += (img.pixels[i - 1 + k][j - 1 + l].red) * edgeK[k][l];
+					green += (img.pixels[i - 1 + k][j - 1 + l].green) * edgeK[k][l];				
+					blue += (img.pixels[i - 1 + k][j - 1 + l].blue) * edgeK[k][l];		
 				}
 			}
   			
@@ -265,17 +267,19 @@ Image edgeDetection(Image img)
 				blue = 0;
 			}
   			
-			edged.pixels[i][j].red = red;
-			edged.pixels[i][j].green = green;
-			edged.pixels[i][j].blue = blue;
+			edge.pixels[i][j].red = red;
+			edge.pixels[i][j].green = green;
+			edge.pixels[i][j].blue = blue;
 		}
 	}
+	
+	printf("\tEdge detection successfully applied! :)\n");
 
-	return edged;
+	return edge;
 
 }
 
-Image emboss(Image img)
+Image embossing(Image img)
 {
 	int i, j, k, l;
 	Image embossed;
@@ -284,16 +288,11 @@ Image emboss(Image img)
 	embossed.width = img.width;
 	embossed.maxRGB = img.maxRGB;
 
-	embossed.pixels = (Pixel**) calloc(embossed.height, sizeof(Pixel*));
+	embossed.pixels = allocatePixels(embossed.height, embossed.width);
 	
-	for(i = 0; i < embossed.height; i++)
-	{
-		embossed.pixels[i] = (Pixel*) calloc(embossed.width, sizeof(Pixel));
-	}
-
-	float emb[3][3] = {{-2,-1,0},
-	                   {-1,1,1},
-                       	   {0,1,2}};
+	float emboss[3][3] = { {-2,-1, 0},
+                           {-1, 1, 1},
+                           { 0, 1, 2} };
 
 	for (i = 1; i < img.height - 1; i++)
 	{
@@ -305,9 +304,9 @@ Image emboss(Image img)
 			{
 				for (l = 0; l < 3; l++)
 				{
-					red += (img.pixels[i - 1 + k][j - 1 + l].red) * emb[k][l];
-					green += (img.pixels[i - 1 + k][j - 1 + l].green) * emb[k][l];				
-					blue += (img.pixels[i - 1 + k][j - 1 + l].blue) * emb[k][l];		
+					red += (img.pixels[i - 1 + k][j - 1 + l].red) * emboss[k][l];
+					green += (img.pixels[i - 1 + k][j - 1 + l].green) * emboss[k][l];				
+					blue += (img.pixels[i - 1 + k][j - 1 + l].blue) * emboss[k][l];		
 				}
 			}
   			
@@ -342,6 +341,8 @@ Image emboss(Image img)
 		}
 	}
 
+	printf("\tEmbossing filter successfully applied! :)\n");
+
 	return embossed;
 
 }
@@ -360,7 +361,9 @@ Image negativeColors(Image img)
 		}
 	}
 	
-	printf("Negative colors successfully applied! ;)\n");
+	printf("\tNegative colors successfully applied! ;)\n");
 
 	return img;
 }
+
+
