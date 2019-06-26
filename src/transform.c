@@ -2,7 +2,8 @@
 #include "file.h"
 
 Image rotate90DegreesLeft(Image img)
-{	int i, j;
+{
+	int i, j;
 	Image rotated;
 
 	rotated.height = img.width;
@@ -31,7 +32,8 @@ Image rotate90DegreesLeft(Image img)
 }
 
 Image rotate90DegreesRight(Image img)
-{	int i, j;
+{	
+	int i, j;
 	Image rotated;
 
 	rotated.height = img.width;
@@ -52,6 +54,36 @@ Image rotate90DegreesRight(Image img)
 			rotated.pixels[i][j].red = img.pixels[img.height - j - 1][i].red;
 			rotated.pixels[i][j].green = img.pixels[img.height - j - 1][i].green;
 			rotated.pixels[i][j].blue = img.pixels[img.height - j - 1][i].blue;
+		}
+
+	}
+
+	return rotated;
+}
+
+Image rotate180Degrees(Image img)
+{
+	int i, j;
+	Image rotated;
+
+	rotated.height = img.width;
+	rotated.width = img.height;
+	rotated.maxRGB = img.maxRGB;
+
+	rotated.pixels = (Pixel**) calloc(rotated.height, sizeof(Pixel*));
+	
+	for(i = 0; i < rotated.height; i++)
+	{
+		rotated.pixels[i] = (Pixel*) calloc(rotated.width, sizeof(Pixel));
+	}
+
+	for (i = 0; i < img.width; i++)
+	{
+		for (j = 0; j < img.height; j++)
+		{	
+			rotated.pixels[i][j].red = img.pixels[img.width - i - 1][img.height - j - 1].red;
+			rotated.pixels[i][j].green = img.pixels[img.width - i - 1][img.height - j - 1].green;
+			rotated.pixels[i][j].blue = img.pixels[img.width - i - 1][img.height - j - 1].blue;
 		}
 
 	}
@@ -109,10 +141,10 @@ Image enlarge(Image img)
 	return enlarged;
 }
 
-	Image reduce(Image img)
-	{	
-		int i, j;
-		Image reduced;
+Image reduce(Image img)
+{	
+	int i, j;
+	Image reduced;
 
 		if (img.height % 2 == 0)
 		{
