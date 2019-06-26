@@ -15,6 +15,7 @@
 
 Image rotate90DegreesRight(Image);
 Image rotate90DegreesLeft(Image);
+Image rotate180Degrees(Image);
 Image reduce(Image);
 Image enlarge(Image);
 
