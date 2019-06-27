@@ -173,7 +173,7 @@ void menuOptions()
 				printf("\t1. Negative colors\n");
 				printf("\t2. Embossing\n");
 				printf("\t3. Blacklight\n");
-		//		printf("\t4. \n");
+				printf("\t4. Overlay \n");
 				
 				scanf("%d", &choice);
 				
@@ -198,13 +198,13 @@ void menuOptions()
 					image = blacklight(image, intensity);
 					writePPM(filepath, image);
 				}
-			/*	else if (choice == 4)
+				else if (choice == 4)
 				{
 					image = readPPM(filepath);
-					image = (image);
+					image = overlay(image);
 					writePPM(filepath, image);
 				}
-			*/
+			
 				break;
 				
 			default:
