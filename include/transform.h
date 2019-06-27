@@ -20,5 +20,6 @@ Image horizontalReflection(Image);
 Image verticalReflection(Image);
 Image reduce(Image);
 Image enlarge(Image);
+Image overlay(Image);
 
 #endif
