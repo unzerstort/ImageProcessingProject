@@ -250,3 +250,27 @@ Image reduce(Image img)
 
 	return reduced;	
 }
+Image overlay(Image img)
+{
+	int i, j;
+	char *filepath;
+	Image layer;
+	layer = readPPM(filepath);
+	
+	for(i = 0; i < img.height; i++)
+	{
+		for(j = 0; j < img.width; j++)
+		{
+			if(layer.pixels[i][j].red != 0 && layer.pixels[i][j].green != 0 && layer.pixels[i][j].blue != 0)
+			{
+				img.pixels[i][j].red = layer.pixels[i][j].red;
+				img.pixels[i][j].green = layer.pixels[i][j].green;
+				img.pixels[i][j].blue = layer.pixels[i][j].blue;
+			}
+		}
+	}
+	
+	printf("Overlay applied successfully! :)");
+
+	return img;
+}
