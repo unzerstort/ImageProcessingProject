@@ -70,6 +70,7 @@ void freeImage(Image *img)
 	free(img);
 }
 
+//this guy intesify the blur filter
 Image applyBlur(Image img, int q)
 {
 
