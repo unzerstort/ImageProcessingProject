@@ -10,12 +10,13 @@ Image rotate90DegreesLeft(Image img)
 	rotated.width = img.height;
 	rotated.maxRGB = img.maxRGB;
 
-	rotated.pixels = (Pixel**) calloc(rotated.height, sizeof(Pixel*));
+	/*rotated.pixels = (Pixel**) calloc(rotated.height, sizeof(Pixel*));
 	
 	for(i = 0; i < rotated.height; i++)
 	{
 		rotated.pixels[i] = (Pixel*) calloc(rotated.width, sizeof(Pixel));
-	}
+	}*/
+	rotated.pixels = allocatePixels(rotated.height, rotated.width);
 
 	for (i = 0; i < img.width; i++)
 	{
@@ -27,6 +28,8 @@ Image rotate90DegreesLeft(Image img)
 		}
 
 	}
+
+	printf("Rotation Reflection applied successfully! :)\n");
 
 	return rotated;
 }
@@ -40,12 +43,14 @@ Image rotate90DegreesRight(Image img)
 	rotated.width = img.height;
 	rotated.maxRGB = img.maxRGB;
 
-	rotated.pixels = (Pixel**) calloc(rotated.height, sizeof(Pixel*));
+	/*rotated.pixels = (Pixel**) calloc(rotated.height, sizeof(Pixel*));
 	
 	for(i = 0; i < rotated.height; i++)
 	{
 		rotated.pixels[i] = (Pixel*) calloc(rotated.width, sizeof(Pixel));
-	}
+	}*/
+
+	rotated.pixels = allocatePixels(rotated.height, rotated.width);
 
 	for (i = 0; i < img.width; i++)
 	{
@@ -57,6 +62,8 @@ Image rotate90DegreesRight(Image img)
 		}
 
 	}
+
+	printf("Rotation Reflection applied successfully! :)\n");
 
 	return rotated;
 }
@@ -70,12 +77,14 @@ Image rotate180Degrees(Image img)
 	rotated.width = img.width;
 	rotated.maxRGB = img.maxRGB;
 
-	rotated.pixels = (Pixel**) calloc(rotated.height, sizeof(Pixel*));
+	/*rotated.pixels = (Pixel**) calloc(rotated.height, sizeof(Pixel*));
 	
 	for(i = 0; i < rotated.height; i++)
 	{
 		rotated.pixels[i] = (Pixel*) calloc(rotated.width, sizeof(Pixel));
-	}
+	}*/
+
+	rotated.pixels = allocatePixels(rotated.height, rotated.width);
 
 	for (i = 0; i < img.width; i++)
 	{
@@ -87,6 +96,8 @@ Image rotate180Degrees(Image img)
 		}
 
 	}
+
+	printf("Rotation Reflection applied successfully! :)\n");
 
 	return rotated;
 }
@@ -100,12 +111,13 @@ Image horizontalReflection(Image img)
 	rotated.width = img.width;
 	rotated.maxRGB = img.maxRGB;
 
-	rotated.pixels = (Pixel**) calloc(rotated.height, sizeof(Pixel*));
+	/*rotated.pixels = (Pixel**) calloc(rotated.height, sizeof(Pixel*));
 	
 	for(i = 0; i < rotated.height; i++)
 	{
 		rotated.pixels[i] = (Pixel*) calloc(rotated.width, sizeof(Pixel));
-	}
+	}*/
+	rotated.pixels = allocatePixels(rotated.height, rotated.width);
 
 	for (i = 0; i < img.height; i++)
 	{
@@ -117,6 +129,8 @@ Image horizontalReflection(Image img)
 		}
 
 	}
+
+	printf("Horizontal Reflection applied successfully! :)\n");
 
 	return rotated;
 }
@@ -130,12 +144,14 @@ Image verticalReflection(Image img)
 	rotated.width = img.width;
 	rotated.maxRGB = img.maxRGB;
 
-	rotated.pixels = (Pixel**) calloc(rotated.height, sizeof(Pixel*));
+	/*rotated.pixels = (Pixel**) calloc(rotated.height, sizeof(Pixel*));
 	
 	for(i = 0; i < rotated.height; i++)
 	{
 		rotated.pixels[i] = (Pixel*) calloc(rotated.width, sizeof(Pixel));
-	}
+	}*/
+
+	rotated.pixels = allocatePixels(rotated.height, rotated.width);
 
 	for (i = 0; i < img.height; i++)
 	{
@@ -147,6 +163,8 @@ Image verticalReflection(Image img)
 		}
 
 	}
+
+	printf("Vertical Reflection applied successfully! :)\n");
 
 	return rotated;
 }
@@ -160,12 +178,14 @@ Image enlarge(Image img)
 	enlarged.width = img.width * 2;
 	enlarged.maxRGB = img.maxRGB;
 		
-	enlarged.pixels = (Pixel**) calloc(enlarged.height,  sizeof(Pixel*));
+	/*enlarged.pixels = (Pixel**) calloc(enlarged.height,  sizeof(Pixel*));
 
 	for (i = 0; i < enlarged.height; i++)
 	{
 		enlarged.pixels[i] = (Pixel*) calloc(enlarged.width, sizeof(Pixel));
-	}	
+	}*/
+
+	enlarged.pixels = allocatePixels(enlarged.height, enlarged.width);
 		
 		for(i = 0; i < enlarged.height; i++)
 		{
@@ -198,6 +218,8 @@ Image enlarge(Image img)
 			}
 		}
 	
+	printf("\tEnlarge applied successfully! :)\n");
+
 	return enlarged;
 }
 
@@ -224,13 +246,14 @@ Image reduce(Image img)
 		}
 
 		reduced.maxRGB = img.maxRGB;
-		printf("Image size: %d x %d\n", reduced.height, reduced.width);
-		reduced.pixels = (Pixel**) calloc(reduced.height,  sizeof(Pixel*));
+		
+		/*reduced.pixels = (Pixel**) calloc(reduced.height,  sizeof(Pixel*));
 
 		for (i = 0; i < reduced.height; i++)
 		{
 			reduced.pixels[i] = (Pixel*) calloc(reduced.width, sizeof(Pixel));
-		}
+		}*/
+		reduced.pixels = allocatePixels(reduced.height, reduced.width);
 
 		int aux1 = 0, aux2 = 0;
 
@@ -247,6 +270,8 @@ Image reduce(Image img)
 			aux2 = 0;
 			aux1++;
 		}
+
+	printf("\tReduce applied successfully! :)\n");
 
 	return reduced;	
 }
@@ -270,7 +295,7 @@ Image overlay(Image img)
 		}
 	}
 	
-	printf("Overlay applied successfully! :)");
+	printf("\tOverlay applied successfully! :)\n");
 
 	return img;
 }
