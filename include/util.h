@@ -49,7 +49,6 @@ typedef struct Image
 /* these are the auxiliary functions' signatures.
  * for further informations about them, see read.c
  */
-Image copyImg(Image *);
 Pixel **allocatePixels(unsint, unsint);
 void freeImage(Image *);
 Image applyBlur(Image, int);
