@@ -15,36 +15,6 @@
  * |_____________________________________|
  */
 
-/* just in case you are wondering what exactly this function is doing: 
- * it copies the matrix of the original image into the one we'll actually 
- * manipulate, so that the original one doesn't go through the changes.
- */
-
-Image copyImg(Image *originalImg)
-{	
-	int i, j;
-	Image newImg;
-
-	newImg.width = originalImg->width;
-	newImg.height = originalImg->height;
-	newImg.maxRGB = originalImg->maxRGB;
-
-	newImg.pixels = (Pixel**) calloc(newImg.height, sizeof(Pixel*));
-
-	for (i = 0; i < originalImg->height; i++)
-	{
-		newImg.pixels[i] = (Pixel*) calloc(newImg.width, sizeof(Pixel));
-
-		for (j = 0; j < originalImg->width; j++)
-		{
-			newImg.pixels[i][j] = originalImg->pixels[i][j];
-		}
-	}
-
-	return newImg;
-
-}
-
 // this function allocates the pixel matrix
 Pixel **allocatePixels(unsint height, unsint width)
 {
@@ -70,7 +40,7 @@ void freeImage(Image *img)
 	free(img);
 }
 
-//this guy intesify the blur filter
+// this guy intensifies the blur filter according to user's choice
 Image applyBlur(Image img, int q)
 {
 
