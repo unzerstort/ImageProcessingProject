@@ -60,8 +60,7 @@ void menuOptions()
     scanf("%d", &option);
 
 	char *filepath;
-	Image image;
-	
+	Image image;	
 
 		switch(option)
 		{
@@ -87,7 +86,7 @@ void menuOptions()
 			case BLURRING:
 				//blurring function
 				image = readPPM(filepath);
-				printf("\tChoose the intesity of your blur:\n");
+				printf("\tChoose the blur intensity:\n");
 				scanf("%d", &q);
 				image = applyBlur(image, q);
 				writePPM(filepath, image);
@@ -114,8 +113,8 @@ void menuOptions()
 				printf("\t1. Rotate 90 degrees left\n");
 				printf("\t2. Rotate 90 degrees right\n");
 				printf("\t3. Rotate 180 degrees\n");
-				printf("\t4. Horizontal Reflection\n");
-				printf("\t5. Vertical Reflection\n");
+				printf("\t4. Horizontal reflection\n");
+				printf("\t5. Vertical reflection\n");
 
 				scanf("%d",&choice);
 
