@@ -10,12 +10,6 @@ Image rotate90DegreesLeft(Image img)
 	rotated.width = img.height;
 	rotated.maxRGB = img.maxRGB;
 
-	/*rotated.pixels = (Pixel**) calloc(rotated.height, sizeof(Pixel*));
-	
-	for(i = 0; i < rotated.height; i++)
-	{
-		rotated.pixels[i] = (Pixel*) calloc(rotated.width, sizeof(Pixel));
-	}*/
 	rotated.pixels = allocatePixels(rotated.height, rotated.width);
 
 	for (i = 0; i < img.width; i++)
@@ -43,13 +37,6 @@ Image rotate90DegreesRight(Image img)
 	rotated.width = img.height;
 	rotated.maxRGB = img.maxRGB;
 
-	/*rotated.pixels = (Pixel**) calloc(rotated.height, sizeof(Pixel*));
-	
-	for(i = 0; i < rotated.height; i++)
-	{
-		rotated.pixels[i] = (Pixel*) calloc(rotated.width, sizeof(Pixel));
-	}*/
-
 	rotated.pixels = allocatePixels(rotated.height, rotated.width);
 
 	for (i = 0; i < img.width; i++)
@@ -63,11 +50,12 @@ Image rotate90DegreesRight(Image img)
 
 	}
 
-	printf("Rotation Reflection applied successfully! :)\n");
+	printf("\tRotation Reflection applied successfully! :)\n");
 
 	return rotated;
 }
 
+// rotates the image in 180 degrees
 Image rotate180Degrees(Image img)
 {
 	int i, j;
@@ -76,13 +64,6 @@ Image rotate180Degrees(Image img)
 	rotated.height = img.height;
 	rotated.width = img.width;
 	rotated.maxRGB = img.maxRGB;
-
-	/*rotated.pixels = (Pixel**) calloc(rotated.height, sizeof(Pixel*));
-	
-	for(i = 0; i < rotated.height; i++)
-	{
-		rotated.pixels[i] = (Pixel*) calloc(rotated.width, sizeof(Pixel));
-	}*/
 
 	rotated.pixels = allocatePixels(rotated.height, rotated.width);
 
@@ -97,11 +78,12 @@ Image rotate180Degrees(Image img)
 
 	}
 
-	printf("Rotation Reflection applied successfully! :)\n");
+	printf("\tRotation Reflection applied successfully! :)\n");
 
 	return rotated;
 }
 
+// simulates the effect of a mirror, reflecting the image  horizontally
 Image horizontalReflection(Image img)
 {
 	int i, j;
@@ -111,12 +93,6 @@ Image horizontalReflection(Image img)
 	rotated.width = img.width;
 	rotated.maxRGB = img.maxRGB;
 
-	/*rotated.pixels = (Pixel**) calloc(rotated.height, sizeof(Pixel*));
-	
-	for(i = 0; i < rotated.height; i++)
-	{
-		rotated.pixels[i] = (Pixel*) calloc(rotated.width, sizeof(Pixel));
-	}*/
 	rotated.pixels = allocatePixels(rotated.height, rotated.width);
 
 	for (i = 0; i < img.height; i++)
@@ -130,11 +106,12 @@ Image horizontalReflection(Image img)
 
 	}
 
-	printf("Horizontal Reflection applied successfully! :)\n");
+	printf("\tHorizontal reflection applied successfully! :)\n");
 
 	return rotated;
 }
 
+// same as the last function, but reflecting the image vertically
 Image verticalReflection(Image img)
 {
 	int i, j;
@@ -143,13 +120,6 @@ Image verticalReflection(Image img)
 	rotated.height = img.height;
 	rotated.width = img.width;
 	rotated.maxRGB = img.maxRGB;
-
-	/*rotated.pixels = (Pixel**) calloc(rotated.height, sizeof(Pixel*));
-	
-	for(i = 0; i < rotated.height; i++)
-	{
-		rotated.pixels[i] = (Pixel*) calloc(rotated.width, sizeof(Pixel));
-	}*/
 
 	rotated.pixels = allocatePixels(rotated.height, rotated.width);
 
@@ -164,11 +134,12 @@ Image verticalReflection(Image img)
 
 	}
 
-	printf("Vertical Reflection applied successfully! :)\n");
+	printf("\tVertical reflection applied successfully! :)\n");
 
 	return rotated;
 }
 
+// augments the image's size twice 
 Image enlarge(Image img)
 {
 	int i, j;
@@ -177,13 +148,6 @@ Image enlarge(Image img)
 	enlarged.height = img.height * 2;
 	enlarged.width = img.width * 2;
 	enlarged.maxRGB = img.maxRGB;
-		
-	/*enlarged.pixels = (Pixel**) calloc(enlarged.height,  sizeof(Pixel*));
-
-	for (i = 0; i < enlarged.height; i++)
-	{
-		enlarged.pixels[i] = (Pixel*) calloc(enlarged.width, sizeof(Pixel));
-	}*/
 
 	enlarged.pixels = allocatePixels(enlarged.height, enlarged.width);
 		
@@ -218,11 +182,12 @@ Image enlarge(Image img)
 			}
 		}
 	
-	printf("\tEnlarge applied successfully! :)\n");
+	printf("\tEnlarged image successfully! :)\n");
 
 	return enlarged;
 }
 
+// reduces the image's size to its half
 Image reduce(Image img)
 {	
 	int i, j;
@@ -247,12 +212,6 @@ Image reduce(Image img)
 
 		reduced.maxRGB = img.maxRGB;
 		
-		/*reduced.pixels = (Pixel**) calloc(reduced.height,  sizeof(Pixel*));
-
-		for (i = 0; i < reduced.height; i++)
-		{
-			reduced.pixels[i] = (Pixel*) calloc(reduced.width, sizeof(Pixel));
-		}*/
 		reduced.pixels = allocatePixels(reduced.height, reduced.width);
 
 		int aux1 = 0, aux2 = 0;
@@ -271,10 +230,12 @@ Image reduce(Image img)
 			aux1++;
 		}
 
-	printf("\tReduce applied successfully! :)\n");
+	printf("\tReduced image successfully! :)\n");
 
 	return reduced;	
 }
+
+// overlays an image over the other if they have the same dimensions
 Image overlay(Image img)
 {
 	int i, j;
