@@ -3,6 +3,9 @@
 
 #include "file.h"
 
+/* this function reads the image's data and
+ * stores it into a matrix allocated dynamically 
+ */
 Image readPPM(char *filepath)
 {
 	filepath = calloc(100, sizeof(char));
@@ -85,6 +88,7 @@ Image readPPM(char *filepath)
 	return img;
 }
 
+// this function writes the filtered image's file
 void writePPM(char *filepath, Image img)
 {
 	filepath = calloc(100, sizeof(char));
