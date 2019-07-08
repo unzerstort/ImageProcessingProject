@@ -17,7 +17,7 @@
 Image grayscale(Image img)
 {
     int i, j;
-	unsint gray;
+	unsint gray;(
 
 	for (i = 0; i < img.height; i++)
 	{
@@ -72,6 +72,9 @@ Image thresholding(Image img)
 	return img;
 }
 
+/* simply blurs the image using a specific kernel and
+ * doing a convolution process (further info on readme)
+ */
 Image blurring(Image img)
 {
 	int i, j, k, l;
@@ -138,6 +141,7 @@ Image blurring(Image img)
 	return blurred;
 }
 
+// this one sharpens the edges/noises of the image
 Image sharpening(Image img)
 {
 	int i, j, k, l;
@@ -206,6 +210,7 @@ Image sharpening(Image img)
 
 }
 
+// detects the points where the brightness changes 
 Image edgeDetection(Image img)
 {
 	int i, j, k, l;
@@ -276,6 +281,7 @@ Image edgeDetection(Image img)
 
 }
 
+// works similarly to sharpening, but we could say its stronger
 Image embossing(Image img)
 {
 	int i, j, k, l;
@@ -344,6 +350,7 @@ Image embossing(Image img)
 
 }
 
+// gets the difference between the maxRGB value and the pixels'
 Image negativeColors(Image img)
 {
 	int i, j;
