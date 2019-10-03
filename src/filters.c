@@ -17,7 +17,7 @@
 Image grayscale(Image img)
 {
     int i, j;
-	unsint gray;(
+	unsint gray;
 
 	for (i = 0; i < img.height; i++)
 	{

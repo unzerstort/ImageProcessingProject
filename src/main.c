@@ -6,7 +6,6 @@
 
 int main()
 {
-	printMenu();
 	menuOptions();
 
 	return 0;
