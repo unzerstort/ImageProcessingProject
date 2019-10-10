@@ -57,11 +57,13 @@ void menuOptions()
 {
 	int aux = 1, q, choice, intensity;
 	Options option;
-    scanf("%d", &option);
 
 	char *filepath;
-	Image image;	
+	Image image  = readPPM(filepath);
 
+	while(aux != 0){
+		printMenu();
+		scanf("%d", &option);
 		switch(option)
 		{
 			case EXIT:
@@ -71,44 +73,33 @@ void menuOptions()
 					
 			case GRAYSCALE:
 				//grayscale function
-				image = readPPM(filepath);
 				image = grayscale(image);
-				writePPM(filepath, image);
 				break;
 
 			case THRESHOLDING:
 				//thresholding function
-				image = readPPM(filepath);
 				image = thresholding(image);
-				writePPM(filepath, image);
 				break; 
 	
 			case BLURRING:
 				//blurring function
-				image = readPPM(filepath);
 				printf("\tChoose the blur intensity:\n");
 				scanf("%d", &q);
 				image = applyBlur(image, q);
-				writePPM(filepath, image);
 				break;
 
 			case SHARPENING:
 				//sharpening function
-				image = readPPM(filepath);
 				image = sharpening(image);
-				writePPM(filepath, image);
 				break;	
 
 			case EDGEDETECTION:
 				//edge detection function
-				image = readPPM(filepath);
 				image = edgeDetection(image);
-				writePPM(filepath, image);
 				break;	
 
 			case ROTATE:
 				// rotate function
-				image = readPPM(filepath);
 				printf("\tChoose one option:\n");
 				printf("\t1. Rotate 90 degrees left\n");
 				printf("\t2. Rotate 90 degrees right\n");
@@ -138,12 +129,10 @@ void menuOptions()
 				{
 					image = verticalReflection(image);
 				}
-				writePPM(filepath, image);
 				break;
 				
 			case ZOOM:
 				//zoom out function
-				image = readPPM(filepath);
 
 				printf("\tChoose one option:\n");
 				printf("\t1. Enlarge\n");
@@ -163,7 +152,6 @@ void menuOptions()
 					printf("Invalid option.\n");
 				}
 				
-				writePPM(filepath, image);
 				break;
 
 			case EXTRAS:
@@ -178,30 +166,22 @@ void menuOptions()
 				
 				if (choice == 1)
 				{
-					image = readPPM(filepath);
 					image = negativeColors(image);
-					writePPM(filepath, image);
 				}
 				else if (choice == 2)
 				{
-					image = readPPM(filepath);
 					image = embossing(image);
-					writePPM(filepath, image);				
 				}
 				else if (choice == 3)
 				{
 					printf("\tNow, enter a number between 1 and 7 in order to define the filter's brightness: ");
 					scanf("%d", &intensity);
 
-					image = readPPM(filepath);
 					image = blacklight(image, intensity);
-					writePPM(filepath, image);
 				}
 				else if (choice == 4)
 				{
-					image = readPPM(filepath);
 					image = overlay(image);
-					writePPM(filepath, image);
 				}
 			
 				break;
@@ -209,7 +189,6 @@ void menuOptions()
 			default:
 				printf("\tInvalid option, try again.\n");
 		}
-			
-		if (aux == 1)
-			menuOptions();
+	}
+	writePPM(filepath, image);
 }
