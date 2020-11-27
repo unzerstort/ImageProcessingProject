@@ -57,7 +57,7 @@ Image readPPM(char *filepath)
 	}
 
 	// reading maximum RGB value
-	if (fscanf(image, "%u", &img.maxRGB) != 1)
+	if (fscanf(image, "%hhu", &img.maxRGB) != 1)
 	{
 		fprintf(stderr, "\tInvalid maximum RBG value.\n");
 	}

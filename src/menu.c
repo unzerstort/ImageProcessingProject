@@ -35,7 +35,7 @@ void printMenu()
  * (for instance, EXIT = 0, READDPPM = 1 and so on)
  */
 
-typedef enum Options
+enum Options
 {
 	EXIT,
 	GRAYSCALE,
@@ -46,7 +46,7 @@ typedef enum Options
 	ROTATE,
 	ZOOM,
 	EXTRAS
-} Options;
+};
 
 /* this guy here will receive the user's entered number and 
  * will judge whether the choice is valid or not according 
@@ -56,7 +56,7 @@ typedef enum Options
 void menuOptions()
 {
 	int aux = 1, q, choice, intensity;
-	Options option;
+	int option;
 
 	char *filepath;
 	Image image  = readPPM(filepath);
